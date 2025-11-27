@@ -1,18 +1,25 @@
 #!/bin/bash
 
-# Ubuntu Setup - GitHub Pages 部署脚本
+# Math Learning Path - GitHub Pages 部署脚本
 # 使用方法: ./deploy-gh-pages.sh
 
 set -e  # 遇到错误时退出
 
 echo "🚀 开始部署到 GitHub Pages..."
 
+# 获取仓库名（从 git remote 或使用默认值）
+REPO_NAME=$(git remote get-url origin 2>/dev/null | sed 's/.*\///;s/\.git$//' || echo "Math-Learning-Path")
+echo "📦 仓库名: $REPO_NAME"
+
 # 检查是否在正确的分支上
 CURRENT_BRANCH=$(git branch --show-current)
-if [ "$CURRENT_BRANCH" != "main" ]; then
-    echo "❌ 错误: 请在 main 分支上运行此脚本"
-    echo "当前分支: $CURRENT_BRANCH"
-    exit 1
+if [ "$CURRENT_BRANCH" != "main" ] && [ "$CURRENT_BRANCH" != "master" ]; then
+    echo "⚠️  警告: 当前分支不是 main 或 master: $CURRENT_BRANCH"
+    read -p "是否继续? (y/N) " -n 1 -r
+    echo
+    if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+        exit 1
+    fi
 fi
 
 # 检查是否有未提交的更改
@@ -24,22 +31,32 @@ fi
 
 echo "✅ 检查通过，开始构建..."
 
-# 构建 VuePress 文档到外部目录
-echo "📦 构建 VuePress 文档到外部目录..."
-BUILD_DIR="../ubuntu_setup_build"
+# 构建 Astro 项目到外部目录
+echo "📦 构建 Astro 项目到外部目录..."
+BUILD_DIR="../math_learning_path_build"
 
 # 清理外部构建目录
 if [ -d "$BUILD_DIR" ]; then
     rm -rf "$BUILD_DIR"
 fi
 
-# 构建到外部目录
-npm run docs:build -- --dest "$BUILD_DIR"
+# 设置 GitHub Pages 的 base 路径
+export PUBLIC_BASE="/$REPO_NAME"
+echo "🔧 设置 PUBLIC_BASE=$PUBLIC_BASE"
+
+# 构建 Astro 项目
+echo "🔨 运行 Astro 构建..."
+npm run build
 
 if [ $? -ne 0 ]; then
     echo "❌ 构建失败"
     exit 1
 fi
+
+# 将构建输出复制到外部目录
+echo "📋 复制构建输出到外部目录..."
+mkdir -p "$BUILD_DIR"
+cp -r dist/* "$BUILD_DIR/"
 
 echo "✅ 构建成功到外部目录: $BUILD_DIR"
 
@@ -95,10 +112,9 @@ git clean -fdx 2>/dev/null || true
 # 手动删除可能残留的文件（包括node_modules）
 echo "🧹 手动清理残留文件..."
 rm -rf node_modules 2>/dev/null || true
-rm -rf docs/.vuepress/dist 2>/dev/null || true
-rm -rf docs/.vuepress/.temp 2>/dev/null || true
-rm -rf docs/.vuepress/cache 2>/dev/null || true
-rm -rf docs/.vuepress/.cache 2>/dev/null || true
+rm -rf dist 2>/dev/null || true
+rm -rf .astro 2>/dev/null || true
+rm -rf .env 2>/dev/null || true
 
 # 从外部构建目录复制文件
 echo "📋 从外部构建目录复制文件..."
@@ -188,6 +204,6 @@ echo "📝 下一步操作:"
 echo "1. 在 GitHub 仓库设置中启用 Pages"
 echo "2. Source 选择 'Deploy from a branch'"
 echo "3. Branch 选择 'gh-pages'"
-echo "4. 等待几分钟后访问: https://你的用户名.github.io/ubuntu_setup"
+echo "4. 等待几分钟后访问: https://你的用户名.github.io/$REPO_NAME"
 echo ""
 echo "🔄 下次更新时，只需再次运行: ./deploy-gh-pages.sh"
