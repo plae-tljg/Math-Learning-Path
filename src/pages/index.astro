@@ -1,0 +1,7 @@
+---
+import { getPath } from '../utils/path';
+
+// 重定向到中文首页，自动处理 base 路径
+const zhHomePath = getPath('/zh/');
+return Astro.redirect(zhHomePath, 301);
+---

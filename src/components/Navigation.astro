@@ -1,0 +1,129 @@
+---
+import { getPath } from '../utils/path';
+import { t, getLangPath, type Lang } from '../utils/i18n';
+
+interface Props {
+	lang: Lang;
+	currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+
+// 使用翻译系统管理导航项
+const navItems = [
+	{ key: 'nav.home', path: '/zh/' },
+	{ key: 'nav.algebraic-geometry', path: '/zh/algebraic-geometry' },
+];
+
+const items = navItems.map(item => ({
+	name: t(item.key, lang),
+	path: getPath(item.path.replace('/zh/', `/${lang}/`))
+}));
+
+const otherLang: Lang = lang === 'zh' ? 'en' : 'zh';
+// 处理语言切换路径，考虑 base
+const basePath = import.meta.env.BASE_URL;
+// 移除 base 路径，获取相对路径
+const relativePath = currentPath.startsWith(basePath) 
+	? currentPath.slice(basePath.length - 1) // basePath 通常以 / 结尾
+	: currentPath;
+// 切换语言
+const otherRelativePath = getLangPath(relativePath, lang, otherLang);
+const otherPath = getPath(otherRelativePath);
+const homePath = getPath(`/${lang}/`);
+const logoText = t('common.title', lang);
+---
+
+<nav>
+	<div class="nav-container">
+		<a href={homePath} class="logo">{logoText}</a>
+		<div class="nav-links">
+			{items.map((item) => (
+				<a
+					href={item.path}
+					class={currentPath === item.path ? 'active' : ''}
+				>
+					{item.name}
+				</a>
+			))}
+			<a href={otherPath} class="lang-switch">
+				{t('nav.switch-lang', lang)}
+			</a>
+		</div>
+	</div>
+</nav>
+
+<style>
+	nav {
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+		position: sticky;
+		top: 0;
+		z-index: 100;
+	}
+
+	.nav-container {
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 1rem 2rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.logo {
+		font-size: 1.5rem;
+		font-weight: bold;
+		text-decoration: none;
+		color: #3245ff;
+	}
+
+	.nav-links {
+		display: flex;
+		gap: 2rem;
+		align-items: center;
+	}
+
+	.nav-links a {
+		text-decoration: none;
+		color: #333;
+		font-weight: 500;
+		transition: color 0.2s;
+	}
+
+	.nav-links a:hover {
+		color: #3245ff;
+	}
+
+	.nav-links a.active {
+		color: #3245ff;
+		border-bottom: 2px solid #3245ff;
+		padding-bottom: 0.25rem;
+	}
+
+	.lang-switch {
+		margin-left: 1rem;
+		padding: 0.5rem 1rem;
+		background: #f0f0f0;
+		border-radius: 6px;
+		font-size: 0.9rem;
+	}
+
+	.lang-switch:hover {
+		background: #e0e0e0;
+	}
+
+	@media (max-width: 768px) {
+		.nav-container {
+			flex-direction: column;
+			gap: 1rem;
+		}
+
+		.nav-links {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+</style>
+

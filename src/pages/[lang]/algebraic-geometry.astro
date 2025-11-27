@@ -1,0 +1,142 @@
+---
+import MathLayout from '../../layouts/MathLayout.astro';
+import Latex from '../../components/Latex.astro';
+import { algebraicGeometryContent } from '../../content/algebraic-geometry';
+import { getPath } from '../../utils/path';
+import type { Lang } from '../../utils/i18n';
+
+// 定义静态路径
+export async function getStaticPaths() {
+	return [
+		{ params: { lang: 'zh' } },
+		{ params: { lang: 'en' } },
+	];
+}
+
+// 从 URL 参数获取语言
+const { lang } = Astro.params;
+const validLang: Lang = (lang === 'en' || lang === 'zh') ? lang : 'zh';
+const content = algebraicGeometryContent[validLang];
+const currentPath = `/${validLang}/algebraic-geometry`;
+---
+
+<MathLayout title={content.title} lang={validLang} currentPath={currentPath}>
+	<article>
+		<h1>{content.title}</h1>
+		
+		<p>{content.content.intro}</p>
+		
+		<h2>{content.content.prerequisites.title}</h2>
+		<p>{validLang === 'zh' ? '在学习代数几何之前，建议掌握以下内容：' : 'Before learning algebraic geometry, it is recommended to master the following:'}</p>
+		<ol>
+			{content.content.prerequisites.items.map((item) => (
+				<li set:html={item.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+			))}
+		</ol>
+		
+		<h2>{content.content.textbooks.title}</h2>
+		
+		<h3>{content.content.textbooks.beginner.title}</h3>
+		<ol>
+			{content.content.textbooks.beginner.items.map((item) => (
+				<li>
+					<strong>{item.author}</strong> - <em>{item.book}</em>
+					<ul>
+						{item.notes.map((note) => (
+							<li>{note}</li>
+						))}
+					</ul>
+				</li>
+			))}
+		</ol>
+		
+		<h3>{content.content.textbooks.intermediate.title}</h3>
+		<ol>
+			{content.content.textbooks.intermediate.items.map((item) => (
+				<li>
+					<strong>{item.author}</strong> - <em>{item.book}</em>
+					<ul>
+						{item.notes.map((note) => (
+							<li>{note}</li>
+						))}
+					</ul>
+				</li>
+			))}
+		</ol>
+		
+		<h3>{content.content.textbooks.advanced.title}</h3>
+		<ol>
+			{content.content.textbooks.advanced.items.map((item) => (
+				<li>
+					<strong>{item.author}</strong> - <em>{item.book}</em>
+					<ul>
+						{item.notes.map((note) => (
+							<li>{note}</li>
+						))}
+					</ul>
+				</li>
+			))}
+		</ol>
+		
+		<h2>{content.content.learningPath.title}</h2>
+		
+		{content.content.learningPath.phases.map((phase) => (
+			<>
+				<h3>{phase.title}{validLang === 'zh' ? `（${phase.duration}）` : ` (${phase.duration})`}</h3>
+				<ul>
+					{phase.items.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			</>
+		))}
+		
+		<h2>{content.content.theorems.title}</h2>
+		<ol>
+			{content.content.theorems.items.map((theorem) => (
+				<li>
+					<strong>{theorem.name}</strong>{validLang === 'zh' ? '：' : ': '}{theorem.description}
+				</li>
+			))}
+		</ol>
+		
+		<h2>{content.content.tips.title}</h2>
+		<ol>
+			{content.content.tips.items.map((tip) => (
+				<li set:html={tip.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+			))}
+		</ol>
+		
+		<h2>{content.content.resources.title}</h2>
+		<ul>
+			{content.content.resources.items.map((resource) => (
+				<li>
+					<a href={resource.url} target="_blank" rel="noopener">{resource.name}</a> - {resource.description}
+				</li>
+			))}
+		</ul>
+		
+		<h2>{content.content.formulas.title}</h2>
+		<p>{validLang === 'zh' ? '以下是一些重要的数学公式：' : 'Here are some important mathematical formulas:'}</p>
+		
+		{content.content.formulas.examples.map((example, idx) => (
+			<div key={idx}>
+				{example.description && (
+					<p>
+						{example.description.split(/(\$[^\$]+\$)/).map((part, i) => {
+							if (part.startsWith('$') && part.endsWith('$')) {
+								const formula = part.slice(1, -1);
+								return <Latex key={i} formula={formula} />;
+							}
+							return <Fragment key={i}>{part}</Fragment>;
+						})}
+					</p>
+				)}
+				{example.formula && (
+					<Latex formula={example.formula} displayMode={example.displayMode} />
+				)}
+			</div>
+		))}
+	</article>
+</MathLayout>
+
