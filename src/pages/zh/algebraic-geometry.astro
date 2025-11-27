@@ -1,0 +1,142 @@
+---
+import MathLayout from '../../layouts/MathLayout.astro';
+import Latex from '../../components/Latex.astro';
+const lang = 'zh';
+const currentPath = '/zh/algebraic-geometry';
+const title = '代数几何学习路径';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>代数几何学习路径</h1>
+		
+		<p>代数几何是现代数学中一个非常重要的分支，它研究代数方程组的几何性质。</p>
+		
+		<h2>前置知识</h2>
+		
+		<p>在学习代数几何之前，建议掌握以下内容：</p>
+		
+		<ol>
+			<li><strong>抽象代数</strong>：群、环、域的基本理论</li>
+			<li><strong>交换代数</strong>：理想、局部化、Noether 环等</li>
+			<li><strong>拓扑学</strong>：基本拓扑概念，特别是 Zariski 拓扑</li>
+			<li><strong>微分几何</strong>（可选但推荐）：流形、切空间等概念</li>
+		</ol>
+		
+		<h2>推荐教材</h2>
+		
+		<h3>入门级</h3>
+		
+		<ol>
+			<li><strong>Fulton, W.</strong> - <em>Algebraic Curves: An Introduction to Algebraic Geometry</em>
+				<ul>
+					<li>从平面曲线开始，循序渐进</li>
+					<li>适合初学者</li>
+				</ul>
+			</li>
+			<li><strong>Reid, M.</strong> - <em>Undergraduate Algebraic Geometry</em>
+				<ul>
+					<li>面向本科生的友好介绍</li>
+					<li>包含大量例子</li>
+				</ul>
+			</li>
+		</ol>
+		
+		<h3>中级</h3>
+		
+		<ol>
+			<li><strong>Hartshorne, R.</strong> - <em>Algebraic Geometry</em>
+				<ul>
+					<li>经典教材，但较为抽象</li>
+					<li>建议在有一定基础后阅读</li>
+				</ul>
+			</li>
+			<li><strong>Shafarevich, I.R.</strong> - <em>Basic Algebraic Geometry</em>
+				<ul>
+					<li>两卷本，内容全面</li>
+					<li>第一卷：代数簇、概形</li>
+					<li>第二卷：概形与复几何</li>
+				</ul>
+			</li>
+		</ol>
+		
+		<h3>高级</h3>
+		
+		<ol>
+			<li><strong>EGA</strong> (Éléments de géométrie algébrique) - Grothendieck
+				<ul>
+					<li>现代代数几何的奠基之作</li>
+					<li>适合深入研究</li>
+				</ul>
+			</li>
+		</ol>
+		
+		<h2>学习路径</h2>
+		
+		<h3>第一阶段：基础概念（1-2 个月）</h3>
+		
+		<ul>
+			<li>仿射代数簇和射影代数簇</li>
+			<li>不可约性和维数</li>
+			<li>正则函数和态射</li>
+			<li>基本例子：直线、圆锥曲线、三次曲线</li>
+		</ul>
+		
+		<h3>第二阶段：概形理论（2-3 个月）</h3>
+		
+		<ul>
+			<li>概形的定义和基本性质</li>
+			<li>层和层的上同调</li>
+			<li>概形之间的态射</li>
+			<li>分离性和有限型</li>
+		</ul>
+		
+		<h3>第三阶段：深入主题（3-6 个月）</h3>
+		
+		<ul>
+			<li>上同调理论</li>
+			<li>除子理论</li>
+			<li>相交理论</li>
+			<li>特殊主题：椭圆曲线、K3 曲面等</li>
+		</ul>
+		
+		<h2>重要定理</h2>
+		
+		<ol>
+			<li><strong>Hilbert 零点定理</strong>：连接代数和几何的桥梁</li>
+			<li><strong>Riemann-Roch 定理</strong>：曲线上的重要结果</li>
+			<li><strong>Serre 对偶</strong>：上同调理论的核心</li>
+		</ol>
+		
+		<h2>学习建议</h2>
+		
+		<ol>
+			<li><strong>多做练习</strong>：代数几何需要大量计算来培养直觉</li>
+			<li><strong>画图理解</strong>：即使在高维情况下，低维例子也很重要</li>
+			<li><strong>学习交换代数</strong>：这是代数几何的语言基础</li>
+			<li><strong>阅读原始文献</strong>：理解重要定理的历史背景</li>
+		</ol>
+		
+		<h2>在线资源</h2>
+		
+		<ul>
+			<li><a href="https://stacks.math.columbia.edu/" target="_blank" rel="noopener">Stacks Project</a> - 完整的代数几何参考</li>
+			<li><a href="https://math.stanford.edu/~vakil/216blog/" target="_blank" rel="noopener">Vakil's Foundations of Algebraic Geometry</a> - 优秀的在线教材</li>
+		</ul>
+		
+		<h2>数学公式示例</h2>
+		
+		<p>以下是一些重要的数学公式：</p>
+		
+		<p>Hilbert 零点定理：如果 <Latex formula="I" /> 是 <Latex formula="k[x_1, \\ldots, x_n]" /> 的理想，那么</p>
+		
+		<Latex formula="I(V(I)) = \\sqrt{I}" displayMode={true} />
+		
+		<p>Riemann-Roch 定理（曲线版本）：对于曲线 <Latex formula="C" /> 上的除子 <Latex formula="D" />，有</p>
+		
+		<Latex formula="\\ell(D) - \\ell(K - D) = \\deg(D) + 1 - g" displayMode={true} />
+		
+		<p>其中 <Latex formula="g" /> 是曲线的亏格，<Latex formula="K" /> 是典范除子。</p>
+	</article>
+</MathLayout>
+

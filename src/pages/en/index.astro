@@ -1,0 +1,24 @@
+---
+import MathLayout from '../../layouts/MathLayout.astro';
+import { getPath } from '../../utils/path';
+import { t } from '../../utils/i18n';
+
+const lang = 'en';
+---
+
+<MathLayout title={t('common.title', lang)} lang={lang} currentPath="/en/">
+	<article>
+		<h1>{t('common.title', lang)}</h1>
+		<p>{t('home.welcome', lang)}</p>
+		
+		<h2>{t('home.about', lang)}</h2>
+		<p>{t('home.about-desc', lang)}</p>
+		
+		<h2>{t('home.learning-paths', lang)}</h2>
+		<ul>
+			<li><a href={getPath('/en/algebraic-geometry')}>{t('nav.algebraic-geometry', lang)}</a></li>
+			<!-- You can continue adding other branches of mathematics -->
+		</ul>
+	</article>
+</MathLayout>
+

@@ -1,6 +1,6 @@
 # Guide
 
-LKM page for his math journey
+LKM page for his math journey  
 
 GitHub Page: [https://plae-tljg.github.io/Math-Learning-Path/](https://plae-tljg.github.io/Math-Learning-Path/)
 
@@ -10,7 +10,7 @@ GitHub Page: [https://plae-tljg.github.io/Math-Learning-Path/](https://plae-tljg
 
 ## Setup Guide
 
-for setting up ubuntu  
+for running the server:    
 
 ```bash
 npm install
