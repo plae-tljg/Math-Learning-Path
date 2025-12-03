@@ -1,0 +1,24 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+const lang = 'zh';
+const currentPath = '/zh/getting-started';
+const title = '数学入门指南';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>数学入门指南</h1>
+		
+		<p>欢迎！这里是我作为数学专业毕业生的经验分享，希望能帮助刚开始学习数学的朋友们。</p>
+		
+		<h2>学习数学时需要注意什么</h2>
+		
+		<p>（这里可以写你的建议和经验）</p>
+		
+		<h2>相关页面</h2>
+		<ul>
+			<li><a href="/zh/getting-started/high-school-books">高中时读的书</a></li>
+		</ul>
+	</article>
+</MathLayout>
+

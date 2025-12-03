@@ -14,10 +14,10 @@ const lang = 'en';
 		<h2>{t('home.about', lang)}</h2>
 		<p>{t('home.about-desc', lang)}</p>
 		
-		<h2>{t('home.learning-paths', lang)}</h2>
+		<h2>Navigation</h2>
 		<ul>
-			<li><a href={getPath('/en/algebraic-geometry')}>{t('nav.algebraic-geometry', lang)}</a></li>
-			<!-- You can continue adding other branches of mathematics -->
+			<li><a href={getPath('/en/getting-started')}>Getting Started with Math</a></li>
+			<li><a href={getPath('/en/university')}>University Math Studies</a></li>
 		</ul>
 	</article>
 </MathLayout>

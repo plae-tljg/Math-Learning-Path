@@ -1,0 +1,22 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+const lang = 'zh';
+const currentPath = '/zh/university';
+const title = '大学数学学习';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>大学数学学习</h1>
+		
+		<p>这里记录我在大学期间系统学习的数学科目和详细的学习路径。</p>
+		
+		<h2>学习科目</h2>
+		<ul>
+			<li><a href={getPath('/zh/university/algebraic-geometry')}>代数几何</a></li>
+			<!-- 可以继续添加其他科目 -->
+		</ul>
+	</article>
+</MathLayout>
+

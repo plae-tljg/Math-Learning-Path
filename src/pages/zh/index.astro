@@ -14,10 +14,10 @@ const lang = 'zh';
 		<h2>{t('home.about', lang)}</h2>
 		<p>{t('home.about-desc', lang)}</p>
 		
-		<h2>{t('home.learning-paths', lang)}</h2>
+		<h2>内容导航</h2>
 		<ul>
-			<li><a href={getPath('/zh/algebraic-geometry')}>{t('nav.algebraic-geometry', lang)}</a></li>
-			<!-- 可以继续添加其他数学分支 -->
+			<li><a href={getPath('/zh/getting-started')}>数学入门指南</a></li>
+			<li><a href={getPath('/zh/university')}>大学数学学习</a></li>
 		</ul>
 	</article>
 </MathLayout>

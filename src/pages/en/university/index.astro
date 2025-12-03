@@ -1,0 +1,22 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+const lang = 'en';
+const currentPath = '/en/university';
+const title = 'University Math Studies';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>University Math Studies</h1>
+		
+		<p>Here I document the mathematical subjects I systematically studied during university and detailed learning paths.</p>
+		
+		<h2>Subjects</h2>
+		<ul>
+			<li><a href={getPath('/en/university/algebraic-geometry')}>Algebraic Geometry</a></li>
+			<!-- You can continue adding other subjects -->
+		</ul>
+	</article>
+</MathLayout>
+
