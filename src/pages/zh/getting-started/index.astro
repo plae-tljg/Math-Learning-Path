@@ -1,60 +1,86 @@
 ---
 import MathLayout from '../../../layouts/MathLayout.astro';
 import { getPath } from '../../../utils/path';
-import { t } from '../../../utils/i18n';
 
 const lang = 'zh';
 const currentPath = '/zh/getting-started';
-const title = t('getting-started.title', lang);
-
-const tips = [
-	{
-		title: '理解而非记忆',
-		desc: '数学不是死记硬背的学科。试着理解每个定理为什么成立，它解决的是什么问题。',
-		icon: '🧠',
-	},
-	{
-		title: '做笔记与推导',
-		desc: '亲手写下证明过程，不要只是阅读。看到≠理解，能写出来才是真正掌握。',
-		icon: '✍️',
-	},
-	{
-		title: '建立联系',
-		desc: '尝试找到不同概念之间的联系。数学是一个有机整体，不是孤立的知识碎片。',
-		icon: '🔗',
-	},
-	{
-		title: '大量练习',
-		desc: '数学需要反复练习。不要怕错，错误是最好的老师。',
-		icon: '📝',
-	},
-];
-
-const highSchoolTopics = [
-	{ name: '代数基础', desc: '方程、函数、多项式' },
-	{ name: '几何', desc: '平面几何、解析几何入门' },
-	{ name: '三角函数', desc: '正弦余弦、正切恒等式' },
-	{ name: '微积分入门', desc: '导数基础、简单积分' },
-];
+const title = '数学学习指南';
 ---
 
 <MathLayout {title} {lang} {currentPath}>
 	<article>
 		<h1>{title}</h1>
-		<p class="intro">{t('getting-started.welcome', lang)}</p>
+		<p class="intro">欢迎来到数学学习路径！这里提供系统化的数学学习指南。</p>
 
-		<h2>{t('getting-started.tips', lang)}</h2>
-		<div class="tips-grid">
-			{tips.map(tip => (
-				<div class="tip-card card">
-					<span class="tip-icon">{tip.icon}</span>
-					<h3>{tip.title}</h3>
-					<p>{tip.desc}</p>
-				</div>
-			))}
+		<h2>单子碰撞理论</h2>
+		<div class="card theory-intro">
+			<p>数学学习的基础是什么？一个学科凭什么能成为独立学科？</p>
+			<p>一个学科最根本的，需要一个对象；其次还需要一些操作规则。打个比方：四则运算最基本的对象是"1"，我们能做的是加、减、乘、除。从一个元素出发，通过反复运算，就能得到多个元素。这就是<strong>从一生多</strong>的雏形。</p>
+			<p>学科的运算本身会受到一些恒等式的约束。当发现这些关系式时，就等于为自由结构找到了约束——这才是真正触及学科内在奥秘的时刻。</p>
 		</div>
 
-		<h2>{t('getting-started.high-school', lang)}</h2>
+		<h3>三项原则</h3>
+		<div class="principles-grid">
+			<div class="principle-card card">
+				<h4>第一原则：由一生多</h4>
+				<p>找到最核心的基础对象，通过预设的运算让它从少变多。一个典型的例子是从空集出发，通过幂集、并集等运算生成整个集合宇宙。</p>
+			</div>
+			<div class="principle-card card">
+				<h4>第二原则：机械化推演</h4>
+				<p>做证明时，暂时抛开内容，只按逻辑形式推演。典型的例子是三段论：若A则B，若B则C，直接推得若A则C——不管内涵，纯粹按规则做符号推演。</p>
+			</div>
+			<div class="principle-card card">
+				<h4>第三原则：概念碰撞</h4>
+				<p>同一理论中的元概念彼此碰撞，就会产生新结果。不同概念就像不同的球，它们互相碰撞才会产生新定理。</p>
+			</div>
+		</div>
+
+		<div class="theory-diagram">
+			<div class="monad monad-1">
+				<span>∅</span>
+				<small>空集</small>
+			</div>
+			<div class="collision">⟷</div>
+			<div class="monad monad-2">
+				<span>⟂</span>
+				<small>真/假</small>
+			</div>
+			<div class="collision">⟷</div>
+			<div class="monad monad-3">
+				<span>ℕ</span>
+				<small>自然数</small>
+			</div>
+			<div class="equals">=</div>
+			<div class="result">
+				<span>新定理</span>
+			</div>
+		</div>
+
+		<h2>学习建议</h2>
+		<div class="tips-grid">
+			<div class="tip-card card">
+				<span class="tip-icon">🧠</span>
+				<h3>理解而非记忆</h3>
+				<p>数学不是死记硬背的学科。试着理解每个定理为什么成立，它解决的是什么问题。</p>
+			</div>
+			<div class="tip-card card">
+				<span class="tip-icon">✍️</span>
+				<h3>做笔记与推导</h3>
+				<p>亲手写下证明过程，不要只是阅读。看到≠理解，能写出来才是真正掌握。</p>
+			</div>
+			<div class="tip-card card">
+				<span class="tip-icon">🔗</span>
+				<h3>建立联系</h3>
+				<p>尝试找到不同概念之间的联系。数学是一个有机整体，不是孤立的知识碎片。</p>
+			</div>
+			<div class="tip-card card">
+				<span class="tip-icon">📝</span>
+				<h3>大量练习</h3>
+				<p>数学需要反复练习。不要怕错，错误是最好的老师。</p>
+			</div>
+		</div>
+
+		<h2>高中数学基础</h2>
 		<p class="section-intro">在开始大学数学之前，确保掌握以下高中数学基础：</p>
 		<div class="topics-table">
 			<table>
@@ -65,12 +91,22 @@ const highSchoolTopics = [
 					</tr>
 				</thead>
 				<tbody>
-					{highSchoolTopics.map(topic => (
-						<tr>
-							<td>{topic.name}</td>
-							<td>{topic.desc}</td>
-						</tr>
-					))}
+					<tr>
+						<td>代数基础</td>
+						<td>方程、函数、多项式</td>
+					</tr>
+					<tr>
+						<td>几何</td>
+						<td>平面几何、解析几何入门</td>
+					</tr>
+					<tr>
+						<td>三角函数</td>
+						<td>正弦余弦、正切恒等式</td>
+					</tr>
+					<tr>
+						<td>微积分入门</td>
+						<td>导数基础、简单积分</td>
+					</tr>
 				</tbody>
 			</table>
 		</div>
@@ -106,6 +142,98 @@ const highSchoolTopics = [
 		margin-bottom: 1.5rem;
 	}
 
+	.theory-intro {
+		margin-bottom: 2rem;
+	}
+
+	.theory-intro p {
+		margin: 0 0 1rem 0;
+	}
+
+	.principles-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.principle-card {
+		padding: 1.5rem;
+	}
+
+	.principle-card h4 {
+		margin: 0 0 1rem 0;
+		color: var(--primary);
+		font-size: 1.1rem;
+	}
+
+	.principle-card p {
+		margin: 0;
+	}
+
+	.theory-diagram {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+		padding: 2rem;
+		background: rgba(99, 102, 241, 0.05);
+		border-radius: 12px;
+		border: 1px solid rgba(99, 102, 241, 0.2);
+		margin-bottom: 2rem;
+	}
+
+	.monad {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 1rem 1.5rem;
+		background: rgba(99, 102, 241, 0.1);
+		border-radius: 12px;
+		border: 2px solid rgba(99, 102, 241, 0.3);
+	}
+
+	.monad span {
+		font-size: 2rem;
+		font-weight: bold;
+		color: var(--primary);
+	}
+
+	.monad small {
+		font-size: 0.75rem;
+		color: var(--text-secondary);
+		margin-top: 0.25rem;
+	}
+
+	.collision {
+		font-size: 1.5rem;
+		color: var(--accent);
+		animation: bounce 1s ease-in-out infinite;
+	}
+
+	@keyframes bounce {
+		0%, 100% { transform: translateY(0); }
+		50% { transform: translateY(-5px); }
+	}
+
+	.equals {
+		font-size: 2rem;
+		color: var(--secondary);
+	}
+
+	.result {
+		padding: 1rem 2rem;
+		background: linear-gradient(135deg, var(--primary), var(--accent));
+		border-radius: 12px;
+	}
+
+	.result span {
+		font-size: 1.25rem;
+		font-weight: bold;
+		color: white;
+	}
+
 	.tips-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -125,7 +253,7 @@ const highSchoolTopics = [
 
 	.tip-card h3 {
 		margin: 0 0 0.5rem 0;
-		color: #f1f5f9;
+		color: var(--text-primary);
 		font-size: 1.1rem;
 	}
 
@@ -164,7 +292,7 @@ const highSchoolTopics = [
 
 	.resource-content h3 {
 		margin: 0 0 0.25rem 0;
-		color: #f1f5f9;
+		color: var(--text-primary);
 	}
 
 	.resource-content p {
@@ -174,7 +302,7 @@ const highSchoolTopics = [
 
 	.resource-arrow {
 		font-size: 1.5rem;
-		color: #6366f1;
+		color: var(--primary);
 		transition: transform 0.2s ease;
 	}
 
@@ -188,13 +316,13 @@ const highSchoolTopics = [
 
 	.next-step p {
 		margin: 0 0 1rem 0;
-		color: #94a3b8;
+		color: var(--text-secondary);
 	}
 
 	.next-link {
 		display: inline-block;
 		padding: 0.75rem 1.5rem;
-		background: linear-gradient(135deg, #6366f1, #8b5cf6);
+		background: linear-gradient(135deg, var(--primary), var(--secondary));
 		color: white;
 		text-decoration: none;
 		border-radius: 8px;
@@ -205,5 +333,15 @@ const highSchoolTopics = [
 	.next-link:hover {
 		transform: translateY(-2px);
 		box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+	}
+
+	@media (max-width: 768px) {
+		.theory-diagram {
+			flex-direction: column;
+		}
+
+		.collision {
+			transform: rotate(90deg);
+		}
 	}
 </style>

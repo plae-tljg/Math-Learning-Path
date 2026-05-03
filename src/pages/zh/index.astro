@@ -1,169 +1,41 @@
 ---
 import MathLayout from '../../layouts/MathLayout.astro';
 import { getPath } from '../../utils/path';
-import { t } from '../../utils/i18n';
 
 const lang = 'zh';
 const currentPath = '/zh/';
-
-// 学习路径数据
-const levels = [
-	{
-		level: 0,
-		name: '创世起点',
-		icon: '∅',
-		subjects: ['集合论', '数理逻辑'],
-		color: '#6366f1',
-	},
-	{
-		level: 1,
-		name: '单子对撞',
-		icon: '⚛',
-		subjects: ['数论', '基础代数'],
-		color: '#8b5cf6',
-	},
-	{
-		level: 2,
-		name: '多元碰撞',
-		icon: '⊕',
-		subjects: ['群论', '数学分析'],
-		color: '#ec4899',
-	},
-	{
-		level: 3,
-		name: '结构碰撞',
-		icon: '◈',
-		subjects: ['拓扑学', '环与域'],
-		color: '#f43f5e',
-	},
-	{
-		level: 4,
-		name: '高维碰撞',
-		icon: '∮',
-		subjects: ['复分析', '测度论'],
-		color: '#f97316',
-	},
-	{
-		level: 5,
-		name: '统一抽象',
-		icon: '∀',
-		subjects: ['范畴论'],
-		color: '#eab308',
-	},
-];
-
-const learningPaths = [
-	{
-		title: '数学入门指南',
-		desc: '从高中数学基础开始，建立正确的学习方法',
-		href: '/zh/getting-started',
-		icon: '📚',
-	},
-	{
-		title: '大学数学学习',
-		desc: '系统学习大学数学各个科目，掌握核心概念',
-		href: '/zh/university',
-		icon: '🎓',
-	},
-];
 ---
 
-<MathLayout title={t('common.title', lang)} lang={lang} {currentPath}>
-	<!-- Hero Section -->
+<MathLayout title="数学学习路径" lang={lang} {currentPath}>
 	<section class="hero">
 		<div class="hero-content">
-			<div class="hero-icon">∑</div>
-			<h1>{t('common.title', lang)}</h1>
-			<p class="hero-subtitle">{t('common.subtitle', lang)}</p>
-			<blockquote>
-				<p>"要先将所有数学推导过程内化到脑海里，不同元素成为一个个的单子，这些单子不停碰撞，这就出了不同定理。"</p>
-			</blockquote>
-		</div>
-	</section>
-
-	<!-- Monad Theory Section -->
-	<section class="section">
-		<h2>{t('home.monad-theory', lang)}</h2>
-		<div class="card">
-			<p class="theory-text">{t('home.monad-desc', lang)}</p>
-			<div class="theory-diagram">
-				<div class="monad monad-1">
-					<span>∅</span>
-					<small>空集</small>
-				</div>
-				<div class="collision">⟷</div>
-				<div class="monad monad-2">
-					<span>⟂</span>
-					<small>真/假</small>
-				</div>
-				<div class="collision">⟷</div>
-				<div class="monad monad-3">
-					<span>ℕ</span>
-					<small>自然数</small>
-				</div>
-				<div class="equals">=</div>
-				<div class="result">
-					<span>新定理</span>
-				</div>
+			<h1>数学学习路径</h1>
+			<p class="hero-subtitle">单子碰撞，数学之美</p>
+			
+			<div class="pet-gallery">
+				<img src={getPath('/pet01.gif')} alt="Pet 1" class="pet-gif" />
+				<img src={getPath('/pet02.gif')} alt="Pet 2" class="pet-gif" />
+				<img src={getPath('/pet03.gif')} alt="Pet 3" class="pet-gif" />
+				<img src={getPath('/pet04.gif')} alt="Pet 4" class="pet-gif" />
+				<img src={getPath('/pet05.gif')} alt="Pet 5" class="pet-gif" />
 			</div>
-		</div>
-	</section>
-
-	<!-- Learning Paths Section -->
-	<section class="section">
-		<h2>{t('home.learning-paths', lang)}</h2>
-		<div class="paths-grid">
-			{learningPaths.map(path => (
-				<a href={getPath(path.href)} class="path-card card">
-					<span class="path-icon">{path.icon}</span>
-					<h3>{path.title}</h3>
-					<p>{path.desc}</p>
-					<span class="path-arrow">→</span>
-				</a>
-			))}
-		</div>
-	</section>
-
-	<!-- Levels Section -->
-	<section class="section">
-		<h2>{t('home.levels', lang)}</h2>
-		<p class="section-intro">数学学习分为六个层次，从基础到抽象，逐步深入。</p>
-		<div class="levels-timeline">
-			{levels.map((level, index) => (
-				<div class="level-item" style={`--level-color: ${level.color}`}>
-					<div class="level-badge">
-						<span class="level-icon">{level.icon}</span>
-						<span class="level-num">L{level.level}</span>
-					</div>
-					<div class="level-content card">
-						<h3>{level.name}</h3>
-						<div class="level-subjects">
-							{level.subjects.map(subject => (
-								<span class="subject-tag">{subject}</span>
-							))}
-						</div>
-					</div>
-					{index < levels.length - 1 && <div class="level-connector"></div>}
-				</div>
-			))}
-		</div>
-	</section>
-
-	<!-- About Section -->
-	<section class="section">
-		<h2>{t('home.about', lang)}</h2>
-		<div class="card about-card">
-			<p>{t('home.about-desc', lang)}</p>
+			
+			<div class="nav-buttons">
+				<a href={getPath('/zh/getting-started')} class="nav-btn primary">开始学习 →</a>
+				<a href={getPath('/zh/university')} class="nav-btn">大学数学 →</a>
+			</div>
 		</div>
 	</section>
 </MathLayout>
 
 <style>
-	/* Hero Section */
 	.hero {
 		text-align: center;
-		padding: 3rem 0;
-		margin-bottom: 2rem;
+		padding: 4rem 0;
+		min-height: calc(100vh - 200px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	.hero-content {
@@ -171,267 +43,80 @@ const learningPaths = [
 		margin: 0 auto;
 	}
 
-	.hero-icon {
-		font-size: 4rem;
-		margin-bottom: 1rem;
-		background: linear-gradient(135deg, #6366f1, #ec4899);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-		animation: pulse 3s ease-in-out infinite;
-	}
-
-	@keyframes pulse {
-		0%, 100% { transform: scale(1); }
-		50% { transform: scale(1.05); }
-	}
-
 	.hero h1 {
 		font-size: 3rem;
 		margin-bottom: 0.5rem;
+		background: linear-gradient(135deg, var(--primary), var(--accent));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
 	.hero-subtitle {
 		font-size: 1.25rem;
-		color: #94a3b8;
-		margin-bottom: 2rem;
+		color: var(--text-secondary);
+		margin-bottom: 3rem;
 	}
 
-	.hero blockquote {
-		text-align: center;
-		max-width: 600px;
-		margin: 2rem auto;
-	}
-
-	/* Section Styles */
-	.section {
-		margin: 3rem 0;
-	}
-
-	.section-intro {
-		margin-bottom: 1.5rem;
-	}
-
-	/* Theory Diagram */
-	.theory-text {
-		margin-bottom: 2rem;
-		font-size: 1.1rem;
-	}
-
-	.theory-diagram {
+	.pet-gallery {
 		display: flex;
-		align-items: center;
 		justify-content: center;
 		gap: 1rem;
+		margin-bottom: 3rem;
 		flex-wrap: wrap;
-		padding: 2rem;
-		background: rgba(99, 102, 241, 0.05);
-		border-radius: 12px;
-		border: 1px solid rgba(99, 102, 241, 0.2);
 	}
 
-	.monad {
+	.pet-gif {
+		width: 120px;
+		height: 120px;
+		object-fit: cover;
+		border-radius: 12px;
+		border: 2px solid var(--border);
+	}
+
+	.nav-buttons {
 		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 1rem 1.5rem;
-		background: rgba(99, 102, 241, 0.1);
-		border-radius: 12px;
-		border: 2px solid rgba(99, 102, 241, 0.3);
+		gap: 1rem;
+		justify-content: center;
+		flex-wrap: wrap;
 	}
 
-	.monad span {
-		font-size: 2rem;
-		font-weight: bold;
-		color: #6366f1;
-	}
-
-	.monad small {
-		font-size: 0.75rem;
-		color: #94a3b8;
-		margin-top: 0.25rem;
-	}
-
-	.collision {
-		font-size: 1.5rem;
-		color: #ec4899;
-		animation: bounce 1s ease-in-out infinite;
-	}
-
-	@keyframes bounce {
-		0%, 100% { transform: translateY(0); }
-		50% { transform: translateY(-5px); }
-	}
-
-	.equals {
-		font-size: 2rem;
-		color: #8b5cf6;
-	}
-
-	.result {
+	.nav-btn {
 		padding: 1rem 2rem;
-		background: linear-gradient(135deg, #6366f1, #ec4899);
 		border-radius: 12px;
-	}
-
-	.result span {
-		font-size: 1.25rem;
-		font-weight: bold;
-		color: white;
-	}
-
-	/* Paths Grid */
-	.paths-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 1.5rem;
-	}
-
-	.path-card {
-		display: block;
+		font-size: 1.1rem;
+		font-weight: 500;
 		text-decoration: none;
-		position: relative;
-		overflow: hidden;
-	}
-
-	.path-card:hover .path-arrow {
-		transform: translateX(5px);
-	}
-
-	.path-icon {
-		font-size: 2.5rem;
-		display: block;
-		margin-bottom: 1rem;
-	}
-
-	.path-card h3 {
-		margin: 0 0 0.5rem 0;
-		color: #f1f5f9;
-	}
-
-	.path-card p {
-		margin: 0;
-		color: #94a3b8;
-	}
-
-	.path-arrow {
-		position: absolute;
-		top: 1.5rem;
-		right: 1.5rem;
-		font-size: 1.5rem;
-		color: #6366f1;
-		transition: transform 0.2s ease;
-	}
-
-	/* Levels Timeline */
-	.levels-timeline {
-		display: flex;
-		flex-direction: column;
-		gap: 0;
-	}
-
-	.level-item {
-		display: flex;
-		align-items: flex-start;
-		gap: 1.5rem;
-		position: relative;
-	}
-
-	.level-badge {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		min-width: 80px;
-	}
-
-	.level-icon {
-		font-size: 2rem;
-		background: linear-gradient(135deg, var(--level-color), #8b5cf6);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-clip: text;
-	}
-
-	.level-num {
-		font-size: 0.75rem;
-		font-weight: bold;
-		color: var(--level-color);
+		transition: all 0.3s ease;
 		background: rgba(99, 102, 241, 0.1);
-		padding: 0.25rem 0.5rem;
-		border-radius: 4px;
-		margin-top: 0.25rem;
+		color: var(--text-primary);
+		border: 1px solid var(--border);
 	}
 
-	.level-content {
-		flex: 1;
-		margin: 0;
+	.nav-btn:hover {
+		transform: translateY(-2px);
+		border-color: var(--primary);
 	}
 
-	.level-content h3 {
-		margin: 0 0 0.75rem 0;
-		color: #f1f5f9;
+	.nav-btn.primary {
+		background: linear-gradient(135deg, var(--primary), var(--secondary));
+		color: white;
+		border: none;
 	}
 
-	.level-subjects {
-		display: flex;
-		gap: 0.5rem;
-		flex-wrap: wrap;
-	}
-
-	.subject-tag {
-		padding: 0.25rem 0.75rem;
-		background: rgba(99, 102, 241, 0.2);
-		border-radius: 20px;
-		font-size: 0.8rem;
-		color: #a5b4fc;
-		border: 1px solid rgba(99, 102, 241, 0.3);
-	}
-
-	.level-connector {
-		position: absolute;
-		left: 39px;
-		top: 60px;
-		width: 2px;
-		height: calc(100% + 1rem);
-		background: linear-gradient(180deg, #6366f1, #8b5cf6);
-	}
-
-	/* About Card */
-	.about-card {
-		line-height: 1.8;
-	}
-
-	.about-card p {
-		margin: 0;
-		font-size: 1rem;
-	}
-
-	/* Responsive */
 	@media (max-width: 768px) {
 		.hero h1 {
 			font-size: 2rem;
 		}
 
-		.theory-diagram {
-			flex-direction: column;
+		.pet-gif {
+			width: 80px;
+			height: 80px;
 		}
 
-		.collision {
-			transform: rotate(90deg);
-		}
-
-		.level-item {
-			flex-direction: column;
-			align-items: center;
-			text-align: center;
-		}
-
-		.level-connector {
-			display: none;
-		}
-
-		.level-subjects {
-			justify-content: center;
+		.nav-btn {
+			padding: 0.75rem 1.5rem;
+			font-size: 1rem;
 		}
 	}
 </style>

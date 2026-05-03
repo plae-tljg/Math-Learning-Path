@@ -1,170 +1,76 @@
 ---
 import MathLayout from '../../../layouts/MathLayout.astro';
 import { getPath } from '../../../utils/path';
-import { t } from '../../../utils/i18n';
 
 const lang = 'zh';
 const currentPath = '/zh/university';
-const title = t('university.title', lang);
+const title = '大学数学';
 
-// 大学数学科目数据 - 使用正确的 slug 映射
+// 只保留有内容的学科
 const subjects = [
 	{
-		level: 0,
 		name: '集合论',
-		slug: 'set-theory',
+		desc: '从空集出发，探索集合的结构与运算',
+		href: '/zh/university/set-theory',
 		icon: '∅',
-		desc: '数学的基础语言，研究集合及其运算',
-		color: '#6366f1',
-	},
-	{
-		level: 0,
-		name: '数理逻辑',
-		slug: 'math-logic',
-		icon: '⊤⊥',
-		desc: '证明的语法与语义基础',
-		color: '#6366f1',
-	},
-	{
 		level: 1,
+	},
+	{
+		name: '数理逻辑',
+		desc: '逻辑的核心、形式系统与证明理论',
+		href: '/zh/university/math-logic',
+		icon: '⟂',
+		level: 1,
+	},
+	{
 		name: '数论',
-		slug: 'number-theory',
-		icon: '质数',
-		desc: '整数的结构与性质',
-		color: '#8b5cf6',
+		desc: '整数的结构与性质，素数分布的奥秘',
+		href: '/zh/university/number-theory',
+		icon: 'ℕ',
+		level: 2,
 	},
 	{
-		level: 2,
 		name: '群论',
-		slug: 'group-theory',
-		icon: '⟳',
-		desc: '对称性的代数研究',
-		color: '#ec4899',
+		desc: '对称性的代数结构，四条公理掌控一切',
+		href: '/zh/university/group-theory',
+		icon: '⊕',
+		level: 3,
 	},
 	{
-		level: 2,
 		name: '数学分析',
-		slug: 'analysis',
+		desc: '实数、极限、连续与微分积分',
+		href: '/zh/university/analysis',
 		icon: '∫',
-		desc: '极限、连续、微积分',
-		color: '#ec4899',
+		level: 4,
 	},
 	{
-		level: 3,
 		name: '拓扑学',
-		slug: 'topology',
-		icon: '◎',
-		desc: '空间的连续性与邻近关系',
-		color: '#f43f5e',
-	},
-	{
-		level: 3,
-		name: '环与域',
-		slug: 'ring-field',
-		icon: '◇',
-		desc: '代数结构的进一步抽象',
-		color: '#f43f5e',
-	},
-	{
-		level: 4,
-		name: '复分析',
-		slug: 'complex-analysis',
-		icon: '∮',
-		desc: '复函数的全纯性质',
-		color: '#f97316',
-	},
-	{
-		level: 4,
-		name: '线性代数',
-		slug: 'linear-algebra',
-		icon: '⇉',
-		desc: '向量空间与线性变换',
-		color: '#f97316',
-	},
-	{
-		level: 4,
-		name: '测度论',
-		slug: 'measure',
-		icon: 'μ',
-		desc: '积分的严格化基础',
-		color: '#f97316',
-	},
-	{
+		desc: '空间的柔软几何，连续性的本质',
+		href: '/zh/university/topology',
+		icon: '◈',
 		level: 5,
-		name: '范畴论',
-		slug: 'category-theory',
-		icon: '∀',
-		desc: '数学的统一语言',
-		color: '#eab308',
 	},
 ];
-
-const levelNames = ['创世起点', '单子对撞', '多元碰撞', '结构碰撞', '高维碰撞', '统一抽象'];
 ---
 
-<MathLayout {title} {lang} {currentPath}>
+<MathLayout {title} lang={lang} {currentPath}>
 	<article>
 		<h1>{title}</h1>
-		<p class="intro">{t('university.subtitle', lang)}</p>
+		<p class="intro">探索数学的核心领域，从基础到抽象，逐步深入。</p>
 
-		<h2>{t('university.subjects', lang)}</h2>
-		<p class="section-intro">点击学科卡片可查看详细的学习路径。</p>
-		
+		<h2>学习路径</h2>
 		<div class="subjects-grid">
 			{subjects.map(subject => (
-				<a 
-					href={getPath(`/zh/university/${subject.slug}`)}
-					class="subject-card card"
-					style={`--subject-color: ${subject.color}`}
-				>
-					<div class="subject-header">
-						<span class="subject-icon">{subject.icon}</span>
-						<span class="subject-level">L{subject.level}</span>
+				<a href={getPath(subject.href)} class="subject-card card">
+					<span class="subject-icon">{subject.icon}</span>
+					<div class="subject-info">
+						<h3>{subject.name}</h3>
+						<p>{subject.desc}</p>
 					</div>
-					<h3>{subject.name}</h3>
-					<p>{subject.desc}</p>
-					<span class="level-name">{levelNames[subject.level]}</span>
+					<span class="subject-level">L{subject.level}</span>
+					<span class="subject-arrow">→</span>
 				</a>
 			))}
-		</div>
-
-		<h2>学科关联图</h2>
-		<div class="diagram card">
-			<pre class="ascii-diagram">
-┌─────────────────────────────────────────────────────────┐
-│                     Level 0: 创世起点                     │
-│              ∅ 空集 ─── ⊤⊥ 真假 ─── ℕ 自然数             │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-┌──────────────────────────┴──────────────────────────────┐
-│                     Level 1: 单子对撞                     │
-│                      质数 / 合数 ── 费马小定理            │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-┌──────────────────────────┴──────────────────────────────┐
-│                     Level 2: 多元碰撞                     │
-│                   ⟳ 群论 ── ∫ 分析                       │
-└──────────────────────────┬──────────────────────────────┘
-                           │
-          ┌────────────────┼────────────────┐
-          │                │                │
-┌─────────┴─────────┐ ┌────┴────┐ ┌────────┴────────┐
-│ Level 3: 结构碰撞  │ │        │ │                 │
-│ ◎ 拓扑 ◇ 环域     │ │        │ │                 │
-└─────────┬─────────┘ │        │ └────────┬────────┘
-          │            │        │          │
-          │     ┌──────┴────────┴──────┐   │
-          │     │   Level 4: 高维碰撞   │   │
-          │     │ ∮ 复分析 ⇉ 线代 μ 测度 │   │
-          │     └──────────┬───────────┘   │
-          │                │               │
-          └────────────────┼───────────────┘
-                           │
-┌──────────────────────────┴──────────────────────────────┐
-│                  Level 5: 统一抽象                       │
-│                        ∀ 范畴论                          │
-└─────────────────────────────────────────────────────────┘
-			</pre>
 		</div>
 	</article>
 </MathLayout>
@@ -175,91 +81,84 @@ const levelNames = ['创世起点', '单子对撞', '多元碰撞', '结构碰�
 		margin-bottom: 2rem;
 	}
 
-	.section-intro {
-		margin-bottom: 1.5rem;
-	}
-
 	.subjects-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		display: flex;
+		flex-direction: column;
 		gap: 1rem;
-		margin-bottom: 2rem;
 	}
 
 	.subject-card {
 		display: flex;
-		flex-direction: column;
+		align-items: center;
+		gap: 1.5rem;
 		text-decoration: none;
-		transition: all 0.3s ease;
+		transition: all 0.2s ease;
 	}
 
 	.subject-card:hover {
-		border-color: var(--subject-color);
-		transform: translateY(-3px);
-	}
-
-	.subject-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 0.75rem;
+		transform: translateX(5px);
+		border-color: var(--primary);
 	}
 
 	.subject-icon {
-		font-size: 1.5rem;
-		color: var(--subject-color);
-		font-weight: bold;
+		font-size: 2.5rem;
+		min-width: 60px;
+		text-align: center;
+		background: linear-gradient(135deg, var(--primary), var(--secondary));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
 	}
 
-	.subject-level {
-		font-size: 0.7rem;
-		padding: 0.2rem 0.5rem;
-		background: rgba(99, 102, 241, 0.2);
-		color: #a5b4fc;
-		border-radius: 4px;
-	}
-
-	.subject-card h3 {
-		margin: 0 0 0.5rem 0;
-		color: #f1f5f9;
-		font-size: 1rem;
-	}
-
-	.subject-card p {
-		margin: 0;
-		font-size: 0.85rem;
+	.subject-info {
 		flex: 1;
 	}
 
-	.level-name {
-		margin-top: 0.75rem;
-		padding: 0.25rem 0.75rem;
-		background: rgba(99, 102, 241, 0.1);
-		border-radius: 20px;
-		font-size: 0.75rem;
-		color: #94a3b8;
-		text-align: center;
+	.subject-info h3 {
+		margin: 0 0 0.25rem 0;
+		color: var(--text-primary);
+		font-size: 1.25rem;
 	}
 
-	.diagram {
-		overflow-x: auto;
-	}
-
-	.ascii-diagram {
+	.subject-info p {
 		margin: 0;
+		font-size: 0.9rem;
+		color: var(--text-secondary);
+	}
+
+	.subject-level {
+		padding: 0.25rem 0.5rem;
+		background: rgba(99, 102, 241, 0.1);
+		border-radius: 4px;
 		font-size: 0.75rem;
-		line-height: 1.4;
-		color: #94a3b8;
-		white-space: pre;
+		font-weight: bold;
+		color: var(--primary);
+	}
+
+	.subject-arrow {
+		font-size: 1.5rem;
+		color: var(--primary);
+		opacity: 0;
+		transition: opacity 0.2s ease;
+	}
+
+	.subject-card:hover .subject-arrow {
+		opacity: 1;
 	}
 
 	@media (max-width: 768px) {
-		.subjects-grid {
-			grid-template-columns: 1fr;
+		.subject-card {
+			flex-direction: column;
+			text-align: center;
+			gap: 1rem;
 		}
 
-		.ascii-diagram {
-			font-size: 0.6rem;
+		.subject-level {
+			order: -1;
+		}
+
+		.subject-arrow {
+			display: none;
 		}
 	}
 </style>

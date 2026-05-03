@@ -1,5 +1,6 @@
 ---
 import Navigation from '../components/Navigation.astro';
+import { getPath } from '../utils/path';
 
 interface Props {
 	title: string;
@@ -15,7 +16,7 @@ const { title, lang, currentPath } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href={getPath('/favicon.svg')} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css" />
@@ -37,14 +38,14 @@ const { title, lang, currentPath } = Astro.props;
 
 <style is:global>
 	:root {
-		--primary: #6366f1;
-		--primary-dark: #4f46e5;
-		--secondary: #8b5cf6;
-		--accent: #ec4899;
-		--bg-dark: #0f172a;
-		--bg-card: rgba(30, 41, 59, 0.8);
-		--text-primary: #f1f5f9;
-		--text-secondary: #94a3b8;
+		--primary: #4f46e5;
+		--primary-dark: #4338ca;
+		--secondary: #7c3aed;
+		--accent: #db2777;
+		--bg-dark: #f8fafc;
+		--bg-card: rgba(255, 255, 255, 0.9);
+		--text-primary: #1e293b;
+		--text-secondary: #64748b;
 		--border: rgba(99, 102, 241, 0.2);
 	}
 
@@ -61,22 +62,13 @@ const { title, lang, currentPath } = Astro.props;
 
 	body {
 		margin: 0;
-		background: var(--bg-dark);
+		background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
 		min-height: 100vh;
 		position: relative;
 	}
 
 	.background-gradient {
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: 
-			radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-			radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-			radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
-		z-index: -1;
+		display: none;
 	}
 
 	main {
@@ -127,8 +119,9 @@ const { title, lang, currentPath } = Astro.props;
 
 	p {
 		color: var(--text-secondary);
-		font-size: 1rem;
-		line-height: 1.8;
+		font-size: 1.05rem;
+		line-height: 1.9;
+		font-weight: 450;
 	}
 
 	/* KaTeX 样式调整 */
@@ -203,13 +196,14 @@ const { title, lang, currentPath } = Astro.props;
 		border-radius: 12px;
 		padding: 1.5rem;
 		border: 1px solid var(--border);
-		backdrop-filter: blur(10px);
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 		transition: all 0.3s ease;
 	}
 
 	.card:hover {
 		border-color: var(--primary);
 		transform: translateY(-2px);
+		box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 	}
 
 	/* 标签样式 */
@@ -293,6 +287,25 @@ const { title, lang, currentPath } = Astro.props;
 
 	::-webkit-scrollbar-thumb:hover {
 		background: var(--secondary);
+	}
+
+	/* 导航栏亮色主题 */
+	nav {
+		background: rgba(255, 255, 255, 0.95);
+		border-bottom: 1px solid var(--border);
+	}
+
+	.logo {
+		color: #1e293b;
+	}
+
+	.nav-links a {
+		color: #64748b;
+	}
+
+	.nav-links a:hover,
+	.nav-links a.active {
+		color: #4f46e5;
 	}
 
 	/* 动画 */
