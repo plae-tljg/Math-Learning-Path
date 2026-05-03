@@ -1,22 +1,265 @@
 ---
 import MathLayout from '../../../layouts/MathLayout.astro';
 import { getPath } from '../../../utils/path';
+import { t } from '../../../utils/i18n';
+
 const lang = 'en';
 const currentPath = '/en/university';
-const title = 'University Math Studies';
+const title = t('university.title', lang);
+
+// University mathematics subjects data - with slug mapping
+const subjects = [
+	{
+		level: 0,
+		name: 'Set Theory',
+		slug: 'set-theory',
+		icon: '∅',
+		desc: 'The foundational language of mathematics',
+		color: '#6366f1',
+	},
+	{
+		level: 0,
+		name: 'Mathematical Logic',
+		slug: 'math-logic',
+		icon: '⊤⊥',
+		desc: 'Syntax and semantics of proofs',
+		color: '#6366f1',
+	},
+	{
+		level: 1,
+		name: 'Number Theory',
+		slug: 'number-theory',
+		icon: 'P',
+		desc: 'Structure and properties of integers',
+		color: '#8b5cf6',
+	},
+	{
+		level: 2,
+		name: 'Group Theory',
+		slug: 'group-theory',
+		icon: '⟳',
+		desc: 'Algebraic study of symmetry',
+		color: '#ec4899',
+	},
+	{
+		level: 2,
+		name: 'Mathematical Analysis',
+		slug: 'analysis',
+		icon: '∫',
+		desc: 'Limits, continuity, calculus',
+		color: '#ec4899',
+	},
+	{
+		level: 3,
+		name: 'Topology',
+		slug: 'topology',
+		icon: '◎',
+		desc: 'Continuity and neighborhood relations',
+		color: '#f43f5e',
+	},
+	{
+		level: 3,
+		name: 'Ring & Field',
+		slug: 'ring-field',
+		icon: '◇',
+		desc: 'Further abstraction of algebraic structures',
+		color: '#f43f5e',
+	},
+	{
+		level: 4,
+		name: 'Complex Analysis',
+		slug: 'complex-analysis',
+		icon: '∮',
+		desc: 'Holomorphic properties of complex functions',
+		color: '#f97316',
+	},
+	{
+		level: 4,
+		name: 'Linear Algebra',
+		slug: 'linear-algebra',
+		icon: '⇉',
+		desc: 'Vector spaces and linear transformations',
+		color: '#f97316',
+	},
+	{
+		level: 4,
+		name: 'Measure Theory',
+		slug: 'measure',
+		icon: 'μ',
+		desc: 'Rigorous foundations of integration',
+		color: '#f97316',
+	},
+	{
+		level: 5,
+		name: 'Category Theory',
+		slug: 'category-theory',
+		icon: '∀',
+		desc: 'The unifying language of mathematics',
+		color: '#eab308',
+	},
+];
+
+const levelNames = ['Genesis', 'First Collision', 'Multi-Collision', 'Structure Collision', 'High-Dimension', 'Unified Abstraction'];
 ---
 
 <MathLayout {title} {lang} {currentPath}>
 	<article>
-		<h1>University Math Studies</h1>
+		<h1>{title}</h1>
+		<p class="intro">{t('university.subtitle', lang)}</p>
+
+		<h2>{t('university.subjects', lang)}</h2>
+		<p class="section-intro">Click on a subject card to view its detailed learning path.</p>
 		
-		<p>Here I document the mathematical subjects I systematically studied during university and detailed learning paths.</p>
-		
-		<h2>Subjects</h2>
-		<ul>
-			<li><a href={getPath('/en/university/algebraic-geometry')}>Algebraic Geometry</a></li>
-			<!-- You can continue adding other subjects -->
-		</ul>
+		<div class="subjects-grid">
+			{subjects.map(subject => (
+				<a 
+					href={getPath(`/en/university/${subject.slug}`)}
+					class="subject-card card"
+					style={`--subject-color: ${subject.color}`}
+				>
+					<div class="subject-header">
+						<span class="subject-icon">{subject.icon}</span>
+						<span class="subject-level">L{subject.level}</span>
+					</div>
+					<h3>{subject.name}</h3>
+					<p>{subject.desc}</p>
+					<span class="level-name">{levelNames[subject.level]}</span>
+				</a>
+			))}
+		</div>
+
+		<h2>Subject Relationship Diagram</h2>
+		<div class="diagram card">
+			<pre class="ascii-diagram">
+┌─────────────────────────────────────────────────────────┐
+│                   Level 0: Genesis                      │
+│             ∅ Empty Set ─── ⊤⊥ T/F ─── ℕ NatNum        │
+└──────────────────────────┬──────────────────────────────┘
+                           │
+┌──────────────────────────┴──────────────────────────────┐
+│                  Level 1: First Collision                │
+│                    Prime / Composite                     │
+└──────────────────────────┬──────────────────────────────┘
+                           │
+┌──────────────────────────┴──────────────────────────────┐
+│                 Level 2: Multi-Collision               │
+│                    ⟳ Groups ── ∫ Analysis               │
+└──────────────────────────┬──────────────────────────────┘
+                           │
+          ┌────────────────┼────────────────┐
+          │                │                │
+┌─────────┴─────────┐ ┌────┴────┐ ┌────────┴────────┐
+│ Level 3: Structure  │ │        │ │                 │
+│ ◎ Topo ◇ Ring/Field │ │        │ │                 │
+└─────────┬─────────┘ │        │ └────────┬────────┘
+          │            │        │          │
+          │     ┌──────┴────────┴──────┐   │
+          │     │ Level 4: High-Dim    │   │
+          │     │ ∮ Complex ⇉ Linear μ Measure │   │
+          │     └──────────┬───────────┘   │
+          │                │               │
+          └────────────────┼───────────────┘
+                           │
+┌──────────────────────────┴──────────────────────────────┐
+│               Level 5: Unified Abstraction              │
+│                        ∀ Category                       │
+└─────────────────────────────────────────────────────────┘
+			</pre>
+		</div>
 	</article>
 </MathLayout>
 
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.section-intro {
+		margin-bottom: 1.5rem;
+	}
+
+	.subjects-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.subject-card {
+		display: flex;
+		flex-direction: column;
+		text-decoration: none;
+		transition: all 0.3s ease;
+	}
+
+	.subject-card:hover {
+		border-color: var(--subject-color);
+		transform: translateY(-3px);
+	}
+
+	.subject-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 0.75rem;
+	}
+
+	.subject-icon {
+		font-size: 1.5rem;
+		color: var(--subject-color);
+		font-weight: bold;
+	}
+
+	.subject-level {
+		font-size: 0.7rem;
+		padding: 0.2rem 0.5rem;
+		background: rgba(99, 102, 241, 0.2);
+		color: #a5b4fc;
+		border-radius: 4px;
+	}
+
+	.subject-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1rem;
+	}
+
+	.subject-card p {
+		margin: 0;
+		font-size: 0.85rem;
+		flex: 1;
+	}
+
+	.level-name {
+		margin-top: 0.75rem;
+		padding: 0.25rem 0.75rem;
+		background: rgba(99, 102, 241, 0.1);
+		border-radius: 20px;
+		font-size: 0.75rem;
+		color: #94a3b8;
+		text-align: center;
+	}
+
+	.diagram {
+		overflow-x: auto;
+	}
+
+	.ascii-diagram {
+		margin: 0;
+		font-size: 0.75rem;
+		line-height: 1.4;
+		color: #94a3b8;
+		white-space: pre;
+	}
+
+	@media (max-width: 768px) {
+		.subjects-grid {
+			grid-template-columns: 1fr;
+		}
+
+		.ascii-diagram {
+			font-size: 0.6rem;
+		}
+	}
+</style>

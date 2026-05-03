@@ -1,0 +1,213 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'zh';
+const currentPath = '/zh/university/topology';
+const title = '拓扑学';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">拓扑学研究空间的连续性与邻近关系。它不关心精确的距离或角度，而是关心"哪些点靠在一起"这个更本质的结构。</p>
+
+		<h2>核心概念：在连续形变下不变的性质</h2>
+		<div class="concept-card card">
+			<p>同胚——可以被连续地拉伸、弯曲但不能撕裂或粘合的两个空间，在拓扑学看来是"一样的"。咖啡杯和甜甜圈在拓扑学中是同构的。</p>
+	</div>
+
+		<h2>开集公理</h2>
+		<div class="concepts-grid">
+			<div class="concept-card card">
+				<h3>空集与全空间</h3>
+				<p>∅ 和 X 都是开集</p>
+			</div>
+			<div class="concept-card card">
+				<h3>任意并</h3>
+				<p>开集的任意并仍是开集</p>
+			</div>
+			<div class="concept-card card">
+				<h3>有限交</h3>
+				<p>有限个开集的交仍是开集</p>
+			</div>
+		</div>
+
+		<h2>重要定理</h2>
+		<div class="theorem-card card">
+			<h3>Brouwer 不动点定理</h3>
+			<p>圆盘到自身的连续映射必有不动点。这是第二原则的直观体现——从内部无法逃脱。</p>
+		</div>
+		<div class="theorem-card card">
+			<h3>Jordan 曲线定理</h3>
+			<p>平面上任何简单闭合曲线把平面分成内部和外部两部分。</p>
+		</div>
+
+		<h2>学习路径</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>点集拓扑</h3>
+					<p>开集、闭集、邻域、连续映射</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>连通性与紧致性</h3>
+					<p>连通集、道路连通、基本群</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>同伦与基本群</h3>
+					<p>同伦等价、复叠空间、群的上同调</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>同调论</h3>
+					<p>单纯同调、奇异同调、上同调</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>与其他学科的连接</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>分析 - 连续映射、开集上的微积分</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>群论 - 代数拓扑、基本群</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>范畴论 - 拓扑斯</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/zh/university')} class="back-link">← 返回大学数学</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card {
+		margin-bottom: 2rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+	}
+
+	.concepts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.theorem-card {
+		margin-bottom: 1.5rem;
+		background: rgba(244, 63, 94, 0.1);
+		border-color: rgba(244, 63, 94, 0.3);
+	}
+
+	.theorem-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+	}
+
+	.theorem-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #f43f5e, #ec4899);
+		border-radius: 50%;
+		font-weight: bold;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(244, 63, 94, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #f43f5e;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #f43f5e;
+	}
+</style>

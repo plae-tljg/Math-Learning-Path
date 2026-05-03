@@ -1,0 +1,199 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'zh';
+const currentPath = '/zh/university/set-theory';
+const title = '集合论';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">集合论是现代数学的基础语言。研究集合及其运算、关系，为整个数学世界提供统一的框架。</p>
+
+		<h2>核心概念</h2>
+		<div class="concepts-grid">
+			<div class="concept-card card">
+				<h3>∅ 空集</h3>
+				<p>最纯粹的"单子"，不包含任何元素。它是整个数学宇宙的起点。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>∈ 元素关系</h3>
+				<p>元素与集合之间的基本关系，$a \in A$ 表示 $a$ 是集合 $A$ 的元素。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>⊆ 子集</h3>
+				<p>包含关系，$A \subseteq B$ 表示 $A$ 的每个元素都在 $B$ 中。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>∪ ∩ 运算</h3>
+				<p>并集和交集，集合的基本代数运算。</p>
+			</div>
+		</div>
+
+		<h2>学习路径</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>基础概念</h3>
+					<p>集合、子集、元素关系、集合运算（并集、交集、补集）</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>关系与函数</h3>
+					<p>笛卡尔积、二元关系、等价关系、偏序关系、函数</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>映射基础</h3>
+					<p>单射、满射、双射，集合的势（基数）</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>公理集合论</h3>
+					<p>ZFC公理系统，选择公理及其等价命题</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>推荐教材</h2>
+		<ul class="book-list">
+			<li><strong>《集合论基础》</strong> - 入门级，概念清晰</li>
+			<li><strong>Naive Set Theory - Paul Halmos</strong> - 经典入门书</li>
+			<li><strong>Set Theory - Jech</strong> - 进阶读物</li>
+		</ul>
+
+		<h2>与其他学科的连接</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>数理逻辑 - 集合是证明的语义基础</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>数论 - 自然数定义在集合论框架中</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>拓扑学 - 开集是集合的特殊子集族</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/zh/university')} class="back-link">← 返回大学数学</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concepts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1.1rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #6366f1, #8b5cf6);
+		border-radius: 50%;
+		font-weight: bold;
+		font-size: 1rem;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.book-list {
+		list-style: none;
+		padding: 0;
+	}
+
+	.book-list li {
+		padding: 0.75rem;
+		margin: 0.5rem 0;
+		background: rgba(99, 102, 241, 0.1);
+		border-radius: 8px;
+		border-left: 3px solid #6366f1;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(99, 102, 241, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #ec4899;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #6366f1;
+	}
+</style>

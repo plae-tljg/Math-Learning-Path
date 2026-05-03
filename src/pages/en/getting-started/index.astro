@@ -1,78 +1,209 @@
 ---
 import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+import { t } from '../../../utils/i18n';
+
 const lang = 'en';
 const currentPath = '/en/getting-started';
-const title = 'Getting Started with Math';
+const title = t('getting-started.title', lang);
+
+const tips = [
+	{
+		title: 'Understand, Don\'t Memorize',
+		desc: 'Mathematics is not a subject of rote learning. Try to understand why each theorem holds and what problem it solves.',
+		icon: '🧠',
+	},
+	{
+		title: 'Take Notes & Derive',
+		desc: 'Write down proof processes yourself, don\'t just read. Seeing ≠ Understanding. Being able to write it out is true mastery.',
+		icon: '✍️',
+	},
+	{
+		title: 'Build Connections',
+		desc: 'Try to find connections between different concepts. Mathematics is an organic whole, not isolated pieces of knowledge.',
+		icon: '🔗',
+	},
+	{
+		title: 'Practice Extensively',
+		desc: 'Mathematics requires repeated practice. Don\'t be afraid of mistakes. Errors are the best teachers.',
+		icon: '📝',
+	},
+];
+
+const highSchoolTopics = [
+	{ name: 'Algebra Basics', desc: 'Equations, functions, polynomials' },
+	{ name: 'Geometry', desc: 'Plane geometry, intro to analytic geometry' },
+	{ name: 'Trigonometry', desc: 'Sine, cosine, tangent identities' },
+	{ name: 'Calculus Intro', desc: 'Basic derivatives, simple integrals' },
+];
 ---
 
 <MathLayout {title} {lang} {currentPath}>
-  <article>
-    <h1>Getting Started with Math</h1>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">{t('getting-started.welcome', lang)}</p>
 
-    <p>
-      Welcome! Here I’ll try to share some of my thoughts as someone who has studied math. I hope it helps you figure out your own attitude towards the subject—whether you’re here to learn, question, or just be curious.
-    </p>
+		<h2>{t('getting-started.tips', lang)}</h2>
+		<div class="tips-grid">
+			{tips.map(tip => (
+				<div class="tip-card card">
+					<span class="tip-icon">{tip.icon}</span>
+					<h3>{tip.title}</h3>
+					<p>{tip.desc}</p>
+				</div>
+			))}
+		</div>
 
-    <section>
-      <h2 style="margin-top: 2rem;">What is math?</h2>
-      <p>
-        If you look up <strong>mathematics</strong> on Wikipedia, here’s the standard explanation:
-      </p>
-      <blockquote style="border-left: 4px solid #dbdbdb; padding-left: 1.25em; color: #555; background: #fafbfc;">
-        Mathematics is a field of study that discovers and organizes methods, theories, and theorems that are developed and proved for the needs of empirical sciences and mathematics itself. There are many areas of mathematics, which include:
-        <ul>
-          <li><strong>Number theory</strong>: the study of numbers</li>
-          <li><strong>Algebra</strong>: the study of formulas and related structures</li>
-          <li><strong>Geometry</strong>: the study of shapes and the spaces that contain them</li>
-          <li><strong>Analysis</strong>: the study of continuous changes</li>
-          <li><strong>Set theory</strong>: presently used as a foundation for all mathematics</li>
-        </ul>
-      </blockquote>
+		<h2>{t('getting-started.high-school', lang)}</h2>
+		<p class="section-intro">Before starting university mathematics, ensure you have mastered these high school basics:</p>
+		<div class="topics-table">
+			<table>
+				<thead>
+					<tr>
+						<th>Topic</th>
+						<th>Main Content</th>
+					</tr>
+				</thead>
+				<tbody>
+					{highSchoolTopics.map(topic => (
+						<tr>
+							<td>{topic.name}</td>
+							<td>{topic.desc}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
 
-      <p>
-        To be honest, this kind of definition always sounded a bit hollow to me. Sure, math as a tool is incredibly practical—it’s everywhere, in engineering, science, and daily life. But when people praise mathematics purely for its abstract theories, or treat it like it’s some perfect kingdom of logical beauty, I can’t help but feel a little skeptical. 
-      </p>
-      <p>
-        Pure math—the side obsessed with proofs, structures, or concepts far removed from anything I’ll ever encounter in reality—often seems pointless or even exhausting. It can feel like mental gymnastics for their own sake, disconnected from the real world. In my experience, the parts of math I actually appreciate are the ones with useful applications: when it helps you solve problems, makes things work, or shows up unexpectedly in technology or daily tasks.
-      </p>
-      <p>
-        Maybe you feel the same frustration, or maybe you love theory for its own sake. But it’s important to acknowledge that it’s okay not to find every aspect of math magical or inspiring. Math can be challenging, dull, or just plain annoying—especially when it’s presented as an abstract subject with no clear relevance.
-      </p>
-    </section>
-    
-    <section>
-      <h2 style="margin-top: 2rem;">How can you start learning math?</h2>
-      <p>
-        My best advice? Start by focusing on the math that actually solves problems you care about. Here are some practical tips:
-      </p>
-      <ul>
-        <li><strong>Look for the real-world side.</strong> Use math to answer questions or accomplish tasks—like budgeting, planning, or analyzing data—rather than getting bogged down in abstract theory.</li>
-        <li><strong>Don’t buy the hype.</strong> You’re not alone if you find some branches of math tedious or irrelevant; focus on what matters to you.</li>
-        <li><strong>Break things down.</strong> Complicated concepts can often be made manageable with a bit of patience and by connecting them to things you already know.</li>
-        <li><strong>It’s fine to dislike some of it.</strong> Don’t force yourself to enjoy everything—just try to find the bits that are useful or (for you) interesting.</li>
-        <li><strong>Talk about it openly.</strong> Being honest about what you find boring or frustrating is much healthier (and often more productive!) than pretending to be endlessly fascinated.</li>
-      </ul>
-      <p>
-        In short: If you want to use math as a tool, don’t worry about not loving it for its own sake. Use it where it helps, and don’t feel bad when you’d rather spend your time on something else.
-      </p>
-    </section>
+		<h2>Recommended Resources</h2>
+		<div class="resources">
+			<a href={getPath('/en/getting-started/high-school-books')} class="resource-link card">
+				<span class="resource-icon">📚</span>
+				<div class="resource-content">
+					<h3>Books from High School</h3>
+					<p>My high school mathematics learning resource recommendations</p>
+				</div>
+				<span class="resource-arrow">→</span>
+			</a>
+		</div>
 
-    <section>
-      <h2 style="margin-top: 2rem;">Where should you go next?</h2>
-      <p>
-        If you want to keep learning, I recommend:
-      </p>
-      <ul>
-        <li><strong>Applied math resources:</strong> Check out guides and websites that emphasize practical usage—like statistics, coding, or basic finance.</li>
-        <li><strong>Math in context:</strong> Look for sources that explain <em>why</em> and <em>where</em> math matters, not just how to prove theorems in a vacuum. You might find math more tolerable (or even enjoyable) when it’s actually doing something useful.</li>
-        <li><strong>Skip what you dislike:</strong> It’s perfectly fine to ignore pure math or advanced abstractions if you don’t see the point.</li>
-      </ul>
-      <p>
-        You don’t have to be a math fan to appreciate its uses. Find whatever helps you get things done. And if you ever want to rant about how annoying pure math can be, know that you’re definitely not alone.
-      </p>
-      <p>
-        Thanks for reading—and good luck finding your own way with math, whatever that ends up meaning for you.
-      </p>
-    </section>
-  </article>
+		<div class="next-step">
+			<p>Ready to dive into university mathematics?</p>
+			<a href={getPath('/en/university')} class="next-link">
+				Explore University Math →
+			</a>
+		</div>
+	</article>
 </MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.section-intro {
+		margin-bottom: 1.5rem;
+	}
+
+	.tips-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.tip-card {
+		text-align: center;
+	}
+
+	.tip-icon {
+		font-size: 2.5rem;
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	.tip-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1.1rem;
+	}
+
+	.tip-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.topics-table {
+		margin-bottom: 2rem;
+	}
+
+	.resources {
+		margin-bottom: 2rem;
+	}
+
+	.resource-link {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		text-decoration: none;
+		position: relative;
+	}
+
+	.resource-link:hover .resource-arrow {
+		transform: translateX(5px);
+	}
+
+	.resource-icon {
+		font-size: 2rem;
+	}
+
+	.resource-content {
+		flex: 1;
+	}
+
+	.resource-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.resource-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.resource-arrow {
+		font-size: 1.5rem;
+		color: #6366f1;
+		transition: transform 0.2s ease;
+	}
+
+	.next-step {
+		text-align: center;
+		padding: 2rem;
+		background: rgba(99, 102, 241, 0.1);
+		border-radius: 12px;
+		border: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.next-step p {
+		margin: 0 0 1rem 0;
+		color: #94a3b8;
+	}
+
+	.next-link {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: linear-gradient(135deg, #6366f1, #8b5cf6);
+		color: white;
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 500;
+		transition: all 0.2s ease;
+	}
+
+	.next-link:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+	}
+</style>

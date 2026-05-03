@@ -1,0 +1,192 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'zh';
+const currentPath = '/zh/university/number-theory';
+const title = '数论';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">数论研究整数的结构与性质。从最朴素的计数出发，到素数分布的深刻奥秘，数论展现了"有限"与"无限"之间的精妙张力。</p>
+
+		<h2>第一原则：整数、加法、乘法</h2>
+		<div class="concept-card card">
+			<p>从最简单的对象（1）和操作（加法）出发，不断生成，无限扩张。这就是第一原则的"由一生多"：从最简单的对象和操作出发，不断生成，无限扩张。</p>
+		</div>
+
+		<h2>模运算：从无限中强行设定有限</h2>
+		<div class="concept-card card">
+			<p>无限多的整数，除以一个固定的 p 之后，只能留下有限种可能的余数：0, 1, 2, ..., p-1。这不是通过加法从内部生成出来的有限性——而是从外部，通过"除不尽"这个操作，强行把无限压缩成的有限。</p>
+		</div>
+
+		<h2>重要定理</h2>
+		<div class="theorem-card card">
+			<h3>费马小定理</h3>
+			<p>对于任何不被 p 整除的 a，有 a^(p-1) ≡ 1 (mod p)。</p>
+			<p class="proof-hint">思路：考虑序列 a^1, a^2, a^3, ... 。因为模 p 的剩余类只有有限个，这个序列迟早会重复。</p>
+		</div>
+
+		<h2>学习路径</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>整除性</h3>
+					<p>最大公约数、欧几里得算法、贝祖定理</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>同余</h3>
+					<p>模运算、剩余系、费马小定理、欧拉定理</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>原根与离散对数</h3>
+					<p>原根存在条件、指标、离散对数问题</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>二次剩余</h3>
+					<p>勒让德符号、互反律、二次域</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">5</span>
+				<div class="step-content">
+					<h3>解析数论（进阶）</h3>
+					<p>狄利克雷级数、ζ函数、素数定理</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>与其他学科的连接</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>群论 - ℤ/pℤ 的乘法群是循环群</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>集合论 - 自然数定义在集合论框架中</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>椭圆曲线 - 现代密码学的基础</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/zh/university')} class="back-link">← 返回大学数学</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card {
+		margin-bottom: 2rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+	}
+
+	.theorem-card {
+		margin-bottom: 2rem;
+		background: rgba(139, 92, 246, 0.1);
+		border-color: rgba(139, 92, 246, 0.3);
+	}
+
+	.theorem-card h3 {
+		margin: 0 0 0.75rem 0;
+		color: #f1f5f9;
+	}
+
+	.theorem-card p {
+		margin: 0 0 0.5rem 0;
+	}
+
+	.proof-hint {
+		font-size: 0.9rem;
+		color: #94a3b8;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #8b5cf6, #ec4899);
+		border-radius: 50%;
+		font-weight: bold;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(139, 92, 246, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #ec4899;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #8b5cf6;
+	}
+</style>

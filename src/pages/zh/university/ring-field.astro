@@ -1,0 +1,213 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'zh';
+const currentPath = '/zh/university/ring-field';
+const title = '环与域';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">环与域是在群论基础上增加乘法运算的代数结构。从整数到多项式，从密码学到几何，环与域提供了更丰富的代数语言。</p>
+
+		<h2>环的公理</h2>
+		<div class="concepts-grid">
+			<div class="concept-card card">
+				<h3>加法阿贝尔群</h3>
+				<p>(R, +) 是阿贝尔群</p>
+			</div>
+			<div class="concept-card card">
+				<h3>乘法半群</h3>
+				<p>(R, ·) 满足结合律</p>
+			</div>
+			<div class="concept-card card">
+				<h3>分配律</h3>
+				<p>a(b + c) = ab + ac</p>
+			</div>
+		</div>
+
+		<h2>域的条件</h2>
+		<div class="concept-card card">
+			<p>域要求乘法构成阿贝尔群（除去零元素）。这意味着除了 0 之外，所有元素都可逆。典型的域：Q, R, C 以及有限域 F_p。</p>
+		</div>
+
+		<h2>重要定理</h2>
+		<div class="theorem-card card">
+			<h3>唯一分解整环</h3>
+			<p>每个非零非单位元素可以唯一分解为不可约元的乘积。整数环 Z 是典型的唯一分解整环。</p>
+		</div>
+		<div class="theorem-card card">
+			<h3>理想与商环</h3>
+			<p>理想是环中类似于正规子群的结构，用于构造商环。</p>
+		</div>
+
+		<h2>学习路径</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>环的基础</h3>
+					<p>环、整环、除环、域的定义</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>理想与同态</h3>
+					<p>主理想、极大理想、素理想</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>多项式环</h3>
+					<p>多项式环、商环、模</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>伽罗瓦理论</h3>
+					<p>域扩张、可分扩张、伽罗瓦对应</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>与其他学科的连接</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>数论 - 代数整数环</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>群论 - 伽罗瓦群</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>代数几何 - 坐标环</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/zh/university')} class="back-link">← 返回大学数学</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card {
+		margin-bottom: 2rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+	}
+
+	.concepts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.theorem-card {
+		margin-bottom: 1.5rem;
+		background: rgba(244, 63, 94, 0.1);
+		border-color: rgba(244, 63, 94, 0.3);
+	}
+
+	.theorem-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+	}
+
+	.theorem-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #f43f5e, #ec4899);
+		border-radius: 50%;
+		font-weight: bold;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(244, 63, 94, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #f43f5e;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #f43f5e;
+	}
+</style>

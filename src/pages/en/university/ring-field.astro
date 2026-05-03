@@ -1,0 +1,213 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'en';
+const currentPath = '/en/university/ring-field';
+const title = 'Ring & Field';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">Rings and fields are algebraic structures with multiplication added on top of groups. From integers to polynomials, from cryptography to geometry, rings and fields provide a richer algebraic language.</p>
+
+		<h2>Ring Axioms</h2>
+		<div class="concepts-grid">
+			<div class="concept-card card">
+				<h3>Additive Abelian Group</h3>
+				<p>(R, +) is an abelian group</p>
+			</div>
+			<div class="concept-card card">
+				<h3>Multiplicative Semigroup</h3>
+				<p>(R, ·) satisfies associativity</p>
+			</div>
+			<div class="concept-card card">
+				<h3>Distributivity</h3>
+				<p>a(b + c) = ab + ac</p>
+			</div>
+		</div>
+
+		<h2>Field Conditions</h2>
+		<div class="concept-card card">
+			<p>A field requires multiplication to form an abelian group (excluding zero). This means all elements except 0 are invertible. Typical fields: Q, R, C, and finite fields F_p.</p>
+		</div>
+
+		<h2>Important Theorems</h2>
+		<div class="theorem-card card">
+			<h3>Unique Factorization Domain</h3>
+			<p>Every nonzero non-unit element can be uniquely factored into irreducible elements. The integer ring Z is a typical unique factorization domain.</p>
+		</div>
+		<div class="theorem-card card">
+			<h3>Ideals and Quotient Rings</h3>
+			<p>Ideals are structures in rings similar to normal subgroups, used to construct quotient rings.</p>
+		</div>
+
+		<h2>Learning Path</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>Ring Basics</h3>
+					<p>Ring, integral domain, division ring, field definitions</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>Ideals and Homomorphisms</h3>
+					<p>Principal ideals, maximal ideals, prime ideals</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>Polynomial Rings</h3>
+					<p>Polynomial rings, quotient rings, modules</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>Galois Theory</h3>
+					<p>Field extensions, separable extensions, Galois correspondence</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>Connections to Other Subjects</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>Number Theory - rings of algebraic integers</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>Group Theory - Galois groups</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>Algebraic Geometry - coordinate rings</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/en/university')} class="back-link">← Back to University Math</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card {
+		margin-bottom: 2rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+	}
+
+	.concepts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.theorem-card {
+		margin-bottom: 1.5rem;
+		background: rgba(244, 63, 94, 0.1);
+		border-color: rgba(244, 63, 94, 0.3);
+	}
+
+	.theorem-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+	}
+
+	.theorem-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #f43f5e, #ec4899);
+		border-radius: 50%;
+		font-weight: bold;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(244, 63, 94, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #f43f5e;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #f43f5e;
+	}
+</style>

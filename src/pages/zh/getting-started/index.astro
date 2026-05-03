@@ -1,24 +1,209 @@
 ---
 import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+import { t } from '../../../utils/i18n';
+
 const lang = 'zh';
 const currentPath = '/zh/getting-started';
-const title = '数学入门指南';
+const title = t('getting-started.title', lang);
+
+const tips = [
+	{
+		title: '理解而非记忆',
+		desc: '数学不是死记硬背的学科。试着理解每个定理为什么成立，它解决的是什么问题。',
+		icon: '🧠',
+	},
+	{
+		title: '做笔记与推导',
+		desc: '亲手写下证明过程，不要只是阅读。看到≠理解，能写出来才是真正掌握。',
+		icon: '✍️',
+	},
+	{
+		title: '建立联系',
+		desc: '尝试找到不同概念之间的联系。数学是一个有机整体，不是孤立的知识碎片。',
+		icon: '🔗',
+	},
+	{
+		title: '大量练习',
+		desc: '数学需要反复练习。不要怕错，错误是最好的老师。',
+		icon: '📝',
+	},
+];
+
+const highSchoolTopics = [
+	{ name: '代数基础', desc: '方程、函数、多项式' },
+	{ name: '几何', desc: '平面几何、解析几何入门' },
+	{ name: '三角函数', desc: '正弦余弦、正切恒等式' },
+	{ name: '微积分入门', desc: '导数基础、简单积分' },
+];
 ---
 
 <MathLayout {title} {lang} {currentPath}>
 	<article>
-		<h1>数学入门指南</h1>
-		
-		<p>欢迎！这里是我作为数学专业毕业生的经验分享，希望能帮助刚开始学习数学的朋友们。</p>
-		
-		<h2>学习数学时需要注意什么</h2>
-		
-		<p>（这里可以写你的建议和经验）</p>
-		
-		<h2>相关页面</h2>
-		<ul>
-			<li><a href="/zh/getting-started/high-school-books">高中时读的书</a></li>
-		</ul>
+		<h1>{title}</h1>
+		<p class="intro">{t('getting-started.welcome', lang)}</p>
+
+		<h2>{t('getting-started.tips', lang)}</h2>
+		<div class="tips-grid">
+			{tips.map(tip => (
+				<div class="tip-card card">
+					<span class="tip-icon">{tip.icon}</span>
+					<h3>{tip.title}</h3>
+					<p>{tip.desc}</p>
+				</div>
+			))}
+		</div>
+
+		<h2>{t('getting-started.high-school', lang)}</h2>
+		<p class="section-intro">在开始大学数学之前，确保掌握以下高中数学基础：</p>
+		<div class="topics-table">
+			<table>
+				<thead>
+					<tr>
+						<th>主题</th>
+						<th>主要内容</th>
+					</tr>
+				</thead>
+				<tbody>
+					{highSchoolTopics.map(topic => (
+						<tr>
+							<td>{topic.name}</td>
+							<td>{topic.desc}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</div>
+
+		<h2>推荐资源</h2>
+		<div class="resources">
+			<a href={getPath('/zh/getting-started/high-school-books')} class="resource-link card">
+				<span class="resource-icon">📚</span>
+				<div class="resource-content">
+					<h3>高中时读的书</h3>
+					<p>我的高中数学学习资料推荐</p>
+				</div>
+				<span class="resource-arrow">→</span>
+			</a>
+		</div>
+
+		<div class="next-step">
+			<p>准备好进入大学数学了吗？</p>
+			<a href={getPath('/zh/university')} class="next-link">
+				探索大学数学 →
+			</a>
+		</div>
 	</article>
 </MathLayout>
 
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.section-intro {
+		margin-bottom: 1.5rem;
+	}
+
+	.tips-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1.5rem;
+		margin-bottom: 2rem;
+	}
+
+	.tip-card {
+		text-align: center;
+	}
+
+	.tip-icon {
+		font-size: 2.5rem;
+		display: block;
+		margin-bottom: 1rem;
+	}
+
+	.tip-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1.1rem;
+	}
+
+	.tip-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.topics-table {
+		margin-bottom: 2rem;
+	}
+
+	.resources {
+		margin-bottom: 2rem;
+	}
+
+	.resource-link {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		text-decoration: none;
+		position: relative;
+	}
+
+	.resource-link:hover .resource-arrow {
+		transform: translateX(5px);
+	}
+
+	.resource-icon {
+		font-size: 2rem;
+	}
+
+	.resource-content {
+		flex: 1;
+	}
+
+	.resource-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.resource-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.resource-arrow {
+		font-size: 1.5rem;
+		color: #6366f1;
+		transition: transform 0.2s ease;
+	}
+
+	.next-step {
+		text-align: center;
+		padding: 2rem;
+		background: rgba(99, 102, 241, 0.1);
+		border-radius: 12px;
+		border: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.next-step p {
+		margin: 0 0 1rem 0;
+		color: #94a3b8;
+	}
+
+	.next-link {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: linear-gradient(135deg, #6366f1, #8b5cf6);
+		color: white;
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 500;
+		transition: all 0.2s ease;
+	}
+
+	.next-link:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+	}
+</style>

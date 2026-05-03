@@ -1,0 +1,198 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'zh';
+const currentPath = '/zh/university/math-logic';
+const title = '数理逻辑';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">数理逻辑对应第二原则：机械化推演。做证明时，可以暂时不管内容，只跟着形式走。</p>
+
+		<h2>逻辑的核心：形式本身</h2>
+		<div class="concept-card card">
+			<p>逻辑的核心就是形式本身。给定一串符号，它只根据规则变换符号，不关心符号代表什么。比如肯定前件：从"若 $P$ 则 $Q$"和"$P$"，直接推出"$Q$"。不需要知道 $P$ 是不是"天在下雨"，$Q$ 是不是"地会湿"，只看到这个形状，就执行这个操作。</p>
+		</div>
+
+		<h2>空间性与时间性</h2>
+		<div class="two-columns">
+			<div class="concept-card card">
+				<h3>空间性</h3>
+				<p>合取的交换律：$P \land Q \equiv Q \land P$，说的是两个命题放在一起，左右顺序无所谓，是空间的并列关系。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>时间性</h3>
+				<p>蕴含的传递性：$P \to Q, Q \to R \Rightarrow P \to R$，明显带有链条和过程的意味——从第一步到第二步，最后得到从起点到终点的直达路径。</p>
+			</div>
+		</div>
+
+		<h2>三原则在逻辑中的体现</h2>
+		<div class="concepts-grid">
+			<div class="concept-card card">
+				<h3>第一原则</h3>
+				<p>命题是基本概念，连接词（且、或、非、蕴含）就是运算。从最简单的命题开始，用连接词不断复合，由一生多。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>第二原则</h3>
+				<p>机械化推演。逻辑系统本身就像一台完美的符号处理机，在纸面上只做形式推演。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>第三原则</h3>
+				<p>概念碰撞。这些复合命题彼此碰撞，用推理规则产生新命题。</p>
+			</div>
+		</div>
+
+		<h2>学习路径</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>命题逻辑</h3>
+					<p>命题、连接词、真值表、重言式</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>谓词逻辑</h3>
+					<p>量词、谓词、变量、自由与绑定</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>证明系统</h3>
+					<p>自然演绎、希尔伯特系统、公理系统</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>元逻辑</h3>
+					<p>一致性、完备性、可靠性、可判定性</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>与其他学科的连接</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>集合论 - 公式可以编码为集合</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>计算机科学 - 布尔电路、程序验证</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>范畴论 - 逻辑系统本身可以范畴化</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/zh/university')} class="back-link">← 返回大学数学</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.two-columns {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concepts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1.1rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #6366f1, #8b5cf6);
+		border-radius: 50%;
+		font-weight: bold;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(99, 102, 241, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #ec4899;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #6366f1;
+	}
+</style>

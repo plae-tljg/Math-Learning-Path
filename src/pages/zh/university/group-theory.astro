@@ -1,0 +1,234 @@
+---
+import MathLayout from '../../../layouts/MathLayout.astro';
+import { getPath } from '../../../utils/path';
+
+const lang = 'zh';
+const currentPath = '/zh/university/group-theory';
+const title = '群论';
+---
+
+<MathLayout {title} {lang} {currentPath}>
+	<article>
+		<h1>{title}</h1>
+		<p class="intro">群论研究封闭运算系统的纯形式。群论诞生于视线的翻转：不再只对面前的对象做计算，而是把"做计算的方式本身"当作一个新对象来端详。</p>
+
+		<h2>核心概念：群的四条宪法</h2>
+		<div class="concepts-grid">
+			<div class="concept-card card">
+				<h3>封闭性</h3>
+				<p>运算结果永不出界</p>
+			</div>
+			<div class="concept-card card">
+				<h3>结合律</h3>
+				<p>$(ab)c = a(bc)$</p>
+			</div>
+			<div class="concept-card card">
+				<h3>单位元</h3>
+				<p>$e \cdot a = a$</p>
+			</div>
+			<div class="concept-card card">
+				<h3>逆元</h3>
+				<p>$a^{-1} \cdot a = e$</p>
+			</div>
+		</div>
+
+		<h2>两条路：从对称到骨架</h2>
+		<div class="two-columns">
+			<div class="concept-card card">
+				<h3>动作的语言</h3>
+				<p>对称——"动完之后看起来还一样"的操作。群作用是把抽象群"做"在一个具体的舞台 $X$ 上。</p>
+			</div>
+			<div class="concept-card card">
+				<h3>形式规律</h3>
+				<p>当发现不同领域的内部规则惊人地相似时，把这些相似性本身定义下来，研究这个形式骨架。</p>
+			</div>
+		</div>
+
+		<h2>重要定理</h2>
+		<div class="theorem-card card">
+			<h3>拉格朗日定理</h3>
+			<p>子群的阶必然整除整个群的阶。这是第二原则的经典登场：几乎不需要知道群的具体内容，只需要"陪集划分"这个机械推理。</p>
+		</div>
+		<div class="theorem-card card">
+			<h3>Sylow 定理</h3>
+			<p>有限群里必然有 $p$ 的幂阶的子群，并给出精确的刻画——存在性、数量、包含关系。</p>
+		</div>
+		<div class="theorem-card card">
+			<h3>伽罗瓦对应</h3>
+			<p>扩域的结构完美对应着自同构群的子群格。多项式方程能否用根式求解，转化为对应群是否可解。</p>
+		</div>
+
+		<h2>学习路径</h2>
+		<div class="learning-path">
+			<div class="path-step">
+				<span class="step-num">1</span>
+				<div class="step-content">
+					<h3>群的基础</h3>
+					<p>群的定义、子群、循环群、置换群</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">2</span>
+				<div class="step-content">
+					<h3>陪集与商群</h3>
+					<p>陪集划分、拉格朗日定理、正规子群</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">3</span>
+				<div class="step-content">
+					<h3>群作用</h3>
+					<p>轨道、稳定子、Cayley定理、共轭作用</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">4</span>
+				<div class="step-content">
+					<h3>有限群结构</h3>
+					<p>Sylow定理、有限单群分类</p>
+				</div>
+			</div>
+			<div class="path-step">
+				<span class="step-num">5</span>
+				<div class="step-content">
+					<h3>伽罗瓦理论</h3>
+					<p>域扩张、可解群、根式求解</p>
+				</div>
+			</div>
+		</div>
+
+		<h2>与其他学科的连接</h2>
+		<div class="connections">
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>数论 - ℤ/pℤ 的乘法群</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>拓扑学 - 代数拓扑、基本群</span>
+			</div>
+			<div class="connection-item">
+				<span class="conn-icon">⟷</span>
+				<span>物理学 - 对称性与守恒定律</span>
+			</div>
+		</div>
+
+		<div class="nav-footer">
+			<a href={getPath('/zh/university')} class="back-link">← 返回大学数学</a>
+		</div>
+	</article>
+</MathLayout>
+
+<style>
+	.intro {
+		font-size: 1.1rem;
+		margin-bottom: 2rem;
+	}
+
+	.two-columns {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concepts-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+		gap: 1rem;
+		margin-bottom: 2rem;
+	}
+
+	.concept-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+		font-size: 1rem;
+	}
+
+	.concept-card p {
+		margin: 0;
+		font-size: 0.85rem;
+	}
+
+	.theorem-card {
+		margin-bottom: 1.5rem;
+		background: rgba(236, 72, 153, 0.1);
+		border-color: rgba(236, 72, 153, 0.3);
+	}
+
+	.theorem-card h3 {
+		margin: 0 0 0.5rem 0;
+		color: #f1f5f9;
+	}
+
+	.theorem-card p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.learning-path {
+		margin-bottom: 2rem;
+	}
+
+	.path-step {
+		display: flex;
+		gap: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.path-step:last-child {
+		border-bottom: none;
+	}
+
+	.step-num {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 2rem;
+		height: 2rem;
+		background: linear-gradient(135deg, #ec4899, #f43f5e);
+		border-radius: 50%;
+		font-weight: bold;
+	}
+
+	.step-content h3 {
+		margin: 0 0 0.25rem 0;
+		color: #f1f5f9;
+	}
+
+	.step-content p {
+		margin: 0;
+		font-size: 0.9rem;
+	}
+
+	.connections {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.connection-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		background: rgba(236, 72, 153, 0.05);
+		border-radius: 8px;
+	}
+
+	.conn-icon {
+		font-size: 1.25rem;
+		color: #ec4899;
+	}
+
+	.nav-footer {
+		margin-top: 3rem;
+		padding-top: 2rem;
+		border-top: 1px solid rgba(99, 102, 241, 0.2);
+	}
+
+	.back-link {
+		color: #ec4899;
+	}
+</style>
