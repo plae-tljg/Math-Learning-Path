@@ -4,344 +4,84 @@ import { getPath } from '../../../utils/path';
 
 const lang = 'zh';
 const currentPath = '/zh/getting-started';
-const title = '数学学习指南';
+const title = '数学学习笔记';
 ---
 
 <MathLayout {title} {lang} {currentPath}>
 	<article>
-		<h1>{title}</h1>
-		<p class="intro">欢迎来到数学学习路径！这里提供系统化的数学学习指南。</p>
-
-		<h2>单子碰撞理论</h2>
-		<div class="card theory-intro">
-			<p>数学学习的基础是什么？一个学科凭什么能成为独立学科？</p>
-			<p>一个学科最根本的，需要一个对象；其次还需要一些操作规则。打个比方：四则运算最基本的对象是"1"，我们能做的是加、减、乘、除。从一个元素出发，通过反复运算，就能得到多个元素。这就是<strong>从一生多</strong>的雏形。</p>
-			<p>学科的运算本身会受到一些恒等式的约束。当发现这些关系式时，就等于为自由结构找到了约束——这才是真正触及学科内在奥秘的时刻。</p>
+		<h1>数学学习的三项原则</h1>
+		
+		<div style="text-align: right; margin-bottom: 2rem;">
+			作者：小狐狸阿米驴
 		</div>
 
-		<h3>三项原则</h3>
-		<div class="principles-grid">
-			<div class="principle-card card">
-				<h4>第一原则：由一生多</h4>
-				<p>找到最核心的基础对象，通过预设的运算让它从少变多。一个典型的例子是从空集出发，通过幂集、并集等运算生成整个集合宇宙。</p>
-			</div>
-			<div class="principle-card card">
-				<h4>第二原则：机械化推演</h4>
-				<p>做证明时，暂时抛开内容，只按逻辑形式推演。典型的例子是三段论：若A则B，若B则C，直接推得若A则C——不管内涵，纯粹按规则做符号推演。</p>
-			</div>
-			<div class="principle-card card">
-				<h4>第三原则：概念碰撞</h4>
-				<p>同一理论中的元概念彼此碰撞，就会产生新结果。不同概念就像不同的球，它们互相碰撞才会产生新定理。</p>
-			</div>
-		</div>
+		<p>数学学习的基础是什么？不妨从一个问题出发：一个数学分支凭什么能成为独立学科？以集合论为例，它靠什么成其为一个子学科，而其他东西不是？</p>
+		
+		<p>要回答这个问题，首先要明确：一个学科至少需要什么？最根本的，需要一个对象；其次还需要一些操作规则，比如加减乘除。以四则运算为例，最基本的对象是"1"，我们能对它做的是加、减、乘、除：1加到自己变成2，1减1变成0，等等。先不追问如果只有1，0、2这些从何而来——关键在于，从一个元素出发，通过反复运算，就能得到多个元素。这就是<strong>从一生多</strong>的雏形。</p>
 
-		<div class="theory-diagram">
-			<div class="monad monad-1">
-				<span>∅</span>
-				<small>空集</small>
-			</div>
-			<div class="collision">⟷</div>
-			<div class="monad monad-2">
-				<span>⟂</span>
-				<small>真/假</small>
-			</div>
-			<div class="collision">⟷</div>
-			<div class="monad monad-3">
-				<span>ℕ</span>
-				<small>自然数</small>
-			</div>
-			<div class="equals">=</div>
-			<div class="result">
-				<span>新定理</span>
-			</div>
-		</div>
+		<p>接下来要问：如何扩展成一个完整学科？以集合论为例，它的基础对象是空集。不必先去纠结空集是什么、从何而来——追问下去会陷入语言的不严谨，甚至想把语言完全变成符号也没完没了。接下来考虑集合里能做哪些运算。四则运算有加减乘除，集合里也有类似的：并（相当于加法）、补（相当于减法）、笛卡尔积（相当于乘法），至于除法，虽然难找，也可能有某种商运算。这就像一个自由群：新的集合对象通过运算不断生成。比如空集的幂集变成含有一个元素的集合，再取幂集又会得到更复杂的结构。这些运算可能不满足交换律，但都是纯符号的堆叠。</p>
 
-		<h2>学习建议</h2>
-		<div class="tips-grid">
-			<div class="tip-card card">
-				<span class="tip-icon">🧠</span>
-				<h3>理解而非记忆</h3>
-				<p>数学不是死记硬背的学科。试着理解每个定理为什么成立，它解决的是什么问题。</p>
-			</div>
-			<div class="tip-card card">
-				<span class="tip-icon">✍️</span>
-				<h3>做笔记与推导</h3>
-				<p>亲手写下证明过程，不要只是阅读。看到≠理解，能写出来才是真正掌握。</p>
-			</div>
-			<div class="tip-card card">
-				<span class="tip-icon">🔗</span>
-				<h3>建立联系</h3>
-				<p>尝试找到不同概念之间的联系。数学是一个有机整体，不是孤立的知识碎片。</p>
-			</div>
-			<div class="tip-card card">
-				<span class="tip-icon">📝</span>
-				<h3>大量练习</h3>
-				<p>数学需要反复练习。不要怕错，错误是最好的老师。</p>
-			</div>
-		</div>
+		<p>然而，集合运算并非完全自由的。比如 $A\cup B$ 再取补，它和 $A$ 的补交 $B$ 的补之间就有确定的关系，可以相互化简。这说明，集合运算本身受到一些恒等式的约束。换句话说，我们可以把一个学科想象成纯粹符号堆叠的<strong>自由结构</strong>，当你发现其中的关系式时，就等于为这个自由结构找到了约束——这才是真正触及学科内在奥秘的时刻。</p>
 
-		<h2>高中数学基础</h2>
-		<p class="section-intro">在开始大学数学之前，确保掌握以下高中数学基础：</p>
-		<div class="topics-table">
-			<table>
-				<thead>
-					<tr>
-						<th>主题</th>
-						<th>主要内容</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>代数基础</td>
-						<td>方程、函数、多项式</td>
-					</tr>
-					<tr>
-						<td>几何</td>
-						<td>平面几何、解析几何入门</td>
-					</tr>
-					<tr>
-						<td>三角函数</td>
-						<td>正弦余弦、正切恒等式</td>
-					</tr>
-					<tr>
-						<td>微积分入门</td>
-						<td>导数基础、简单积分</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<h2>第一原则：由一生多</h2>
+		
+		<p>从上面的讨论可以提炼出第一个原则：对于一个学科，找到最核心的基础对象，通过预设的运算让它从少变多，从而构造出大部分想要的东西。</p>
 
-		<h2>推荐资源</h2>
-		<div class="resources">
-			<a href={getPath('/zh/getting-started/high-school-books')} class="resource-link card">
-				<span class="resource-icon">📚</span>
-				<div class="resource-content">
-					<h3>高中时读的书</h3>
-					<p>我的高中数学学习资料推荐</p>
-				</div>
-				<span class="resource-arrow">→</span>
-			</a>
-		</div>
+		<h2>第二原则：机械化推演</h2>
+		
+		<p>做证明时，我们常觉得步骤写得过分复杂，即便要证的结果直观上很简单也难以理解。其实可以暂时抛开内容，只按逻辑形式推演。最基本的例子是三段论：若 $A$ 则 $B$，若 $B$ 则 $C$，直接推得若 $A$ 则 $C$。再比如数学分析里，已知紧致集必定闭且有界，闭且有界集上连续函数必有最值，那么机械合并就得到：紧致集上的连续函数必有最值。这就是不管内涵，纯粹按照规则做符号推演。</p>
 
-		<div class="next-step">
-			<p>准备好进入大学数学了吗？</p>
-			<a href={getPath('/zh/university')} class="next-link">
-				探索大学数学 →
-			</a>
+		<h2>第三原则：概念碰撞</h2>
+		
+		<p>第三个原则与第一个原则相关。第一个原则是从极少数基础元素和运算出发，由一生多。但在更复杂的学科里——比如实分析——核心概念不止一个两个，而是同时有实数、连续、紧致、集合、函数等一大堆概念，不妨称之为"元概念"。同一理论中的元概念不可能毫无关联。它们彼此碰撞，就会产生新结果、新定理。</p>
+
+		<p>最简单的方式是让两个概念两两碰撞。比如"紧致"和"闭"，看看它们之间有什么包含关系。很容易猜想：紧致是否蕴含闭？证明确实如此；反过来，闭是否蕴含紧致？可以找到反例。这样，通过两两碰撞就得到两个结论：紧致推出闭，以及存在闭而非紧致的反例。</p>
+
+		<p>做完两两碰撞，就可以引入第三个、第四个概念，依次类推。从第一原则生出多个概念之后，就可以用这些概念不断碰撞，引出更多结果。而在证明这些结果时，往往不需要过多思考，只需像机器一样按部就班地推演——这又回到了第二个原则。本科层次的数学学习，大致就是如此。</p>
+
+		<h2>延伸思考</h2>
+		
+		<p>如果再学下去，会发现更有趣的事。前面把集合论当作最基础的东西，但基础本身可否更换？比如能否把路径积分当作基础？或许真的可以。因为没人规定一定要用简单推导复杂。从物理现实看，量子力学可能比经典力学更基本，路径积分说不定比传统动力学更底层。这也是值得玩味的方向。</p>
+
+		<div class="next-step" style="margin-top: 3rem;">
+			<a href={getPath('/zh/getting-started/high-school-books')}>高中时读的书 →</a>
 		</div>
 	</article>
 </MathLayout>
 
 <style>
-	.intro {
-		font-size: 1.1rem;
-		margin-bottom: 2rem;
+	article {
+		max-width: 700px;
+		margin: 0 auto;
 	}
 
-	.section-intro {
-		margin-bottom: 1.5rem;
+	article h1 {
+		margin-bottom: 0.5rem;
 	}
 
-	.theory-intro {
-		margin-bottom: 2rem;
-	}
-
-	.theory-intro p {
-		margin: 0 0 1rem 0;
-	}
-
-	.principles-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-		gap: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.principle-card {
-		padding: 1.5rem;
-	}
-
-	.principle-card h4 {
-		margin: 0 0 1rem 0;
-		color: var(--primary);
-		font-size: 1.1rem;
-	}
-
-	.principle-card p {
-		margin: 0;
-	}
-
-	.theory-diagram {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
-		flex-wrap: wrap;
-		padding: 2rem;
-		background: rgba(99, 102, 241, 0.05);
-		border-radius: 12px;
-		border: 1px solid rgba(99, 102, 241, 0.2);
-		margin-bottom: 2rem;
-	}
-
-	.monad {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 1rem 1.5rem;
-		background: rgba(99, 102, 241, 0.1);
-		border-radius: 12px;
-		border: 2px solid rgba(99, 102, 241, 0.3);
-	}
-
-	.monad span {
-		font-size: 2rem;
-		font-weight: bold;
-		color: var(--primary);
-	}
-
-	.monad small {
-		font-size: 0.75rem;
-		color: var(--text-secondary);
-		margin-top: 0.25rem;
-	}
-
-	.collision {
+	article h2 {
+		margin-top: 2.5rem;
 		font-size: 1.5rem;
-		color: var(--accent);
-		animation: bounce 1s ease-in-out infinite;
 	}
 
-	@keyframes bounce {
-		0%, 100% { transform: translateY(0); }
-		50% { transform: translateY(-5px); }
+	article p {
+		margin-bottom: 1.2rem;
+		line-height: 1.8;
 	}
 
-	.equals {
-		font-size: 2rem;
-		color: var(--secondary);
-	}
-
-	.result {
-		padding: 1rem 2rem;
-		background: linear-gradient(135deg, var(--primary), var(--accent));
-		border-radius: 12px;
-	}
-
-	.result span {
-		font-size: 1.25rem;
-		font-weight: bold;
-		color: white;
-	}
-
-	.tips-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-		gap: 1.5rem;
-		margin-bottom: 2rem;
-	}
-
-	.tip-card {
-		text-align: center;
-	}
-
-	.tip-icon {
-		font-size: 2.5rem;
-		display: block;
-		margin-bottom: 1rem;
-	}
-
-	.tip-card h3 {
-		margin: 0 0 0.5rem 0;
-		color: var(--text-primary);
-		font-size: 1.1rem;
-	}
-
-	.tip-card p {
-		margin: 0;
-		font-size: 0.9rem;
-	}
-
-	.topics-table {
-		margin-bottom: 2rem;
-	}
-
-	.resources {
-		margin-bottom: 2rem;
-	}
-
-	.resource-link {
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		text-decoration: none;
-		position: relative;
-	}
-
-	.resource-link:hover .resource-arrow {
-		transform: translateX(5px);
-	}
-
-	.resource-icon {
-		font-size: 2rem;
-	}
-
-	.resource-content {
-		flex: 1;
-	}
-
-	.resource-content h3 {
-		margin: 0 0 0.25rem 0;
-		color: var(--text-primary);
-	}
-
-	.resource-content p {
-		margin: 0;
-		font-size: 0.9rem;
-	}
-
-	.resource-arrow {
-		font-size: 1.5rem;
-		color: var(--primary);
-		transition: transform 0.2s ease;
+	article p:last-child {
+		margin-bottom: 0;
 	}
 
 	.next-step {
 		text-align: center;
-		padding: 2rem;
-		background: rgba(99, 102, 241, 0.1);
-		border-radius: 12px;
-		border: 1px solid rgba(99, 102, 241, 0.2);
-	}
-
-	.next-step p {
-		margin: 0 0 1rem 0;
-		color: var(--text-secondary);
-	}
-
-	.next-link {
-		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		background: linear-gradient(135deg, var(--primary), var(--secondary));
-		color: white;
-		text-decoration: none;
+		padding: 1.5rem;
+		border: 1px solid var(--border);
 		border-radius: 8px;
-		font-weight: 500;
-		transition: all 0.2s ease;
 	}
 
-	.next-link:hover {
-		transform: translateY(-2px);
-		box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-	}
-
-	@media (max-width: 768px) {
-		.theory-diagram {
-			flex-direction: column;
-		}
-
-		.collision {
-			transform: rotate(90deg);
-		}
+	.next-step a {
+		color: var(--primary);
+		font-size: 1.1rem;
 	}
 </style>

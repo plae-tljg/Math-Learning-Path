@@ -7,8 +7,8 @@ set -e  # 遇到错误时退出
 
 echo "🚀 开始部署到 GitHub Pages..."
 
-# 获取仓库名（从 git remote 或使用默认值）
-REPO_NAME=$(git remote get-url origin 2>/dev/null | sed 's/.*\///;s/\.git$//' || echo "Math-Learning-Path")
+# 使用固定的仓库名
+REPO_NAME="Math-Learning-Path"
 echo "📦 仓库名: $REPO_NAME"
 
 # 检查是否在正确的分支上
@@ -119,6 +119,10 @@ rm -rf .env 2>/dev/null || true
 # 从外部构建目录复制文件
 echo "📋 从外部构建目录复制文件..."
 cp -r "$BUILD_DIR"/* .
+
+# 创建 .nojekyll 文件，防止 Jekyll 忽略 _astro 文件夹
+echo "📝 创建 .nojekyll 文件..."
+touch .nojekyll
 
 # 检查复制后的文件
 echo "🔍 检查复制后的文件..."
